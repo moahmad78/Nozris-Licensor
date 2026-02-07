@@ -1,0 +1,85 @@
+import React from 'react';
+import {
+    Code, Terminal, FileJson, Layers, Box, Cpu, Globe, Lock, ShieldCheck,
+    Smartphone, Monitor, ShoppingBag, Database, Server
+} from 'lucide-react';
+
+export default function LanguageGrid() {
+    const languages = [
+        {
+            id: 'react-next',
+            name: 'React / Next.js',
+            icon: <Code className="text-cyan-400" size={32} />,
+            description: 'Component-Level Obfuscation',
+            detail: 'We encrypt client-side bundles (webpack chunks) and inject anti-tamper logic into React hydration methods. If the DOM checks fail, the app unmounts instantly.',
+            color: 'border-cyan-500/30 bg-cyan-500/5'
+        },
+        {
+            id: 'node-php',
+            name: 'Node.js / PHP',
+            icon: <Server className="text-purple-400" size={32} />,
+            description: 'Server-Side Token Validation',
+            detail: 'Backend routes are protected by a rolling-token middleware. Direct API calls without a signed Licensr header are dropped at the controller level.',
+            color: 'border-purple-500/30 bg-purple-500/5'
+        },
+        {
+            id: 'binaries',
+            name: '.EXE / .DMG',
+            icon: <Monitor className="text-red-400" size={32} />,
+            description: 'Binary Shielding',
+            detail: 'For Electron, C#, and Python executables, we wrap the entry point in a V8 snapshot (JS) or specialized DLL (C#) that requires online heartbeat verification to run.',
+            color: 'border-red-500/30 bg-red-500/5'
+        },
+        {
+            id: 'mobile',
+            name: 'iOS / Android',
+            icon: <Smartphone className="text-green-400" size={32} />,
+            description: 'Bundle ID & Signature Lock',
+            detail: 'We verify the `applicationId` and signing certificate at runtime. Hooking frameworks like Frida or Jailbreak/Root attempts trigger an immediate crash.',
+            color: 'border-green-500/30 bg-green-500/5'
+        },
+        {
+            id: 'cms',
+            name: 'WordPress / Shopify',
+            icon: <ShoppingBag className="text-orange-400" size={32} />,
+            description: 'Theme & Plugin Locking',
+            detail: 'Core logic is moved to an encrypted external include. The local files only contain "skeleton" code that calls our secure CDN for the actual business logic.',
+            color: 'border-orange-500/30 bg-orange-500/5'
+        },
+        {
+            id: 'python',
+            name: 'Python / AI Models',
+            icon: <Terminal className="text-yellow-400" size={32} />,
+            description: 'Model Weight Encryption',
+            detail: 'Protect your proprietary .pth or .h5 models. Our Python wrapper decrypts weights only in memory during inference, preventing file-system theft.',
+            color: 'border-yellow-500/30 bg-yellow-500/5'
+        }
+    ];
+
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {languages.map((lang) => (
+                <div key={lang.id} className={`p-6 rounded-2xl border ${lang.color} hover:bg-gray-900 transition-all group relative overflow-hidden`}>
+                    <div className="flex items-center gap-4 mb-4">
+                        <div className="p-3 bg-gray-950 rounded-xl border border-gray-800 group-hover:scale-110 transition-transform">
+                            {lang.icon}
+                        </div>
+                        <h3 className="text-xl font-bold text-white">{lang.name}</h3>
+                    </div>
+                    <div className="mb-3">
+                        <span className="text-xs font-mono uppercase tracking-wider text-gray-500 border border-gray-800 px-2 py-1 rounded bg-black">
+                            {lang.description}
+                        </span>
+                    </div>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                        {lang.detail}
+                    </p>
+
+                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <ShieldCheck size={16} className="text-white/20" />
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}

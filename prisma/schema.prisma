@@ -1,0 +1,310 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String   @id @default(uuid())
+  name             String?
+  email            String   @unique
+  password         String
+  role             String   @default("USER")
+  isApproved       Boolean  @default(false)
+  twoFactorSecret  String?
+  twoFactorEnabled Boolean  @default(false)
+  createdAt        DateTime @default(now())
+}
+
+model License {
+  id               String        @id @default(uuid())
+  domain           String
+  licenseKey       String        @unique
+  isCertified      Boolean       @default(true)
+  verificationCode String        @unique @default(cuid())
+  isReleased       Boolean       @default(false)
+  cleanSnapshot    String?       @db.Text
+  status           String        @default("ACTIVE")
+  editMode         Boolean       @default(false)
+  editModeExpiry   DateTime?
+  isUnlimited      Boolean       @default(false)
+  lastEditBy       String?
+  lastEditDuration String?
+  lastEditAt       DateTime?
+  planName         String        @default("Standard Plan")
+  monthlyPrice     Float         @default(500.0)
+  validFrom        DateTime      @default(now())
+  expiresAt        DateTime
+  lastChecked      DateTime?
+  createdAt        DateTime      @default(now())
+  reminderSent     Boolean       @default(false)
+  clientEmail      String        @default("legacy_user@example.com")
+  clientPhone      String?
+  lastUsedAt       DateTime?
+  maxDomains       Int           @default(1)
+  deletedAt        DateTime?
+  updatedAt        DateTime      @default(now()) @updatedAt
+  payments         Payment[]
+  subscriptionStatus String?     @default("ACTIVE")
+  lastPaymentDate    DateTime?
+  TamperEvent      TamperEvent[]
+
+  @@index([licenseKey])
+  @@index([domain])
+  @@index([clientEmail])
+  @@index([status])
+}
+
+model RenewalRequest {
+  id            String   @id @default(uuid())
+  licenseId     String
+  domain        String
+  duration      String
+  amount        Float
+  transactionId String
+  status        String   @default("PENDING")
+  createdAt     DateTime @default(now())
+
+  @@index([licenseId])
+  @@index([status])
+}
+
+model Profile {
+  id             String   @id @default(uuid())
+  fullName       String   @default("Admin User")
+  supportEmail   String   @default("support@example.com")
+  whatsappNumber String   @default("+1234567890")
+  contactNumber  String   @default("+1234567890")
+  logo           String?
+  updatedAt      DateTime @default(now()) @updatedAt
+}
+
+model BlockedIP {
+  id          String   @id @default(uuid())
+  ipAddress   String   @unique
+  reason      String   @default("Suspicious Activity")
+  attempts    Int      @default(0)
+  isBlocked   Boolean  @default(false)
+  userAgent   String?
+  location    String?
+  isp         String?
+  evidenceUrl String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([ipAddress])
+}
+
+model ClientOTP {
+  id        String   @id @default(uuid())
+  email     String
+  otp       String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
+
+model Lead {
+  id               String    @id @default(uuid())
+  name             String
+  email            String
+  whatsapp         String
+  domain           String
+  status           String    @default("PENDING")
+  documentUrl      String?
+  lastReminderSent DateTime?
+  createdAt        DateTime  @default(now())
+
+  @@index([email])
+  @@index([status])
+}
+
+model Client {
+  id                 String        @id @default(uuid())
+  name               String
+  email              String        @unique
+  whatsapp           String
+  domain             String
+  documentUrl        String?
+  address            String?
+  aadharNumber       String?
+  profilePhoto       String?
+  kycStatus          String        @default("PENDING")
+  lastReminderSent   DateTime?
+  adminNotes         String?       @default("")
+  tamperCount        Int           @default(0)
+  devModeUntil       DateTime?
+  isEditMode         Boolean       @default(false)
+  fileHash           String?
+  lastSeenHash       String?
+  sourceBackup       String?       @db.Text
+  subscriptionStatus String        @default("PAID")
+  lastPaymentDate    DateTime?
+  billingHistory     String?       @db.Text
+  tamperEvents       TamperEvent[]
+  updatedAt          DateTime      @default(now()) @updatedAt
+  createdAt          DateTime      @default(now())
+
+  @@index([email])
+  @@index([domain])
+  @@index([kycStatus])
+}
+
+model Payment {
+  id               String   @id @default(uuid())
+  licenseId        String
+  license          License  @relation(fields: [licenseId], references: [id])
+  utrNumber        String   @unique
+  status           String   @default("PENDING")
+  amount           Float
+  createdAt        DateTime @default(now())
+  rejectionReason  String?
+  notificationSent Boolean  @default(false)
+  updatedAt        DateTime @default(now()) @updatedAt
+
+  @@index([licenseId])
+  @@index([status])
+}
+
+model TamperEvent {
+  id          String   @id @default(uuid())
+  licenseId   String
+  license     License  @relation(fields: [licenseId], references: [id])
+  fileName    String   @default("Main Bundle")
+  detectedAt  DateTime @default(now())
+  ipAddress   String
+  severity    String   @default("HIGH")
+  oldHash     String?
+  newHash     String?
+  description String?
+  Client      Client?  @relation(fields: [clientId], references: [id])
+  clientId    String?
+
+  @@index([licenseId])
+}
+
+model ActivityLog {
+  id          String   @id @default(uuid())
+  clientId    String?
+  clientEmail String?
+  type        String
+  action      String
+  message     String
+  createdAt   DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([type])
+  @@index([clientEmail])
+}
+
+model Notification {
+  id          String   @id @default(uuid())
+  userId      String?
+  clientEmail String?
+  title       String
+  message     String
+  type        String   @default("INFO")
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([clientEmail])
+  @@index([isRead])
+}
+
+model Announcement {
+  id      String   @id @default(uuid())
+  title   String
+  message String
+  sentBy  String   @default("Mohd Ahmad")
+  sentAt  DateTime @default(now())
+  status  String   @default("SENT")
+}
+
+model SupportTicket {
+  id            String           @id @default(uuid())
+  clientEmail   String
+  subject       String
+  message       String
+  status        String           @default("OPEN")
+  priority      String           @default("MEDIUM")
+  rating        Int?
+  attachmentUrl String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  messages      SupportMessage[]
+
+  @@index([clientEmail])
+  @@index([status])
+}
+
+model SupportMessage {
+  id        String        @id @default(uuid())
+  ticketId  String
+  ticket    SupportTicket @relation(fields: [ticketId], references: [id])
+  text      String
+  sender    String
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @default(now()) @updatedAt
+
+  @@index([ticketId])
+}
+
+model CommunicationLog {
+  id          String   @id @default(uuid())
+  clientEmail String
+  type        String
+  direction   String
+  title       String
+  message     String   @db.Text
+  status      String   @default("SENT")
+  metadata    String?
+  createdAt   DateTime @default(now())
+
+  @@index([clientEmail])
+  @@index([createdAt])
+}
+
+model GlobalBlacklist {
+  id                String   @id @default(uuid())
+  ipAddress         String   @unique
+  deviceFingerprint String?
+  reason            String   @default("Global Security Violation")
+  country           String?
+  isProxy           Boolean  @default(false)
+  isGlobal          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+
+  @@index([ipAddress])
+  @@index([deviceFingerprint])
+}
+
+model LegalPolicy {
+  id        String   @id @default(uuid())
+  type      String   @unique
+  content   String   @db.Text
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model SystemSettings {
+  id              String   @id @default("default")
+  maintenanceMode Boolean  @default(false)
+  updatedAt       DateTime @default(now()) @updatedAt
+}
+
+model SecurityReport {
+  id             String   @id @default(uuid())
+  clientEmail    String
+  month          String
+  blockedIPs     Int      @default(0)
+  tamperAttempts Int      @default(0)
+  uptime         Float    @default(99.99)
+  generatedAt    DateTime @default(now())
+
+  @@unique([clientEmail, month])
+  @@index([clientEmail])
+}

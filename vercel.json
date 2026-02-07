@@ -1,0 +1,19 @@
+{
+    "framework": "nextjs",
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/$1"
+        }
+    ],
+    "functions": {
+        "app/api/**/*": {
+            "maxDuration": 25,
+            "memory": 1024
+        }
+    },
+    "regions": [
+        "bom1"
+    ],
+    "cleanUrls": true
+}
