@@ -1,8 +1,8 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { auth } from '@/auth'; // Assuming auth() or similar exists. Using strict check instead.
-import { headers } from 'next/headers';
+import { headers, cookies } from 'next/headers';
 
 // Mock Auth Check - In real app use session
 async function getSessionUser() {
@@ -31,18 +31,31 @@ async function getSessionUser() {
 }
 
 export async function getClientLicenseDetails() {
-    // 1. Get Client
-    const client = await prisma.client.findFirst(); // Just taking first for demo/continuity if session missing
-    if (!client) return null;
+    const cookieStore = await cookies();
+    const token = cookieStore.get('client_session')?.value;
 
-    // 2. Get License
-    const license = await prisma.license.findFirst({
-        where: { clientEmail: client.email }
-    });
+    if (!token) return null;
 
-    return {
-        key: license?.licenseKey || 'NO_LICENSE_FOUND',
-        domain: license?.domain || 'example.com',
-        endpoint: process.env.NEXT_PUBLIC_APP_URL || 'https://licensr.com'
-    };
+    try {
+        const { verifyToken } = await import('@/lib/client-auth-token');
+        const payload = await verifyToken(token);
+
+        if (!payload || !payload.email) return null;
+
+        const license = await prisma.license.findFirst({
+            where: { clientEmail: payload.email as string }
+        });
+
+        if (!license) return { key: 'NO_LICENSE_FOUND', domain: 'unknown', endpoint: '' };
+
+        return {
+            key: license.licenseKey,
+            domain: license.domain,
+            endpoint: process.env.NEXT_PUBLIC_APP_URL || 'https://nozris.com'
+        };
+    } catch (error) {
+        console.error("Session verification failed:", error);
+        return null;
+    }
 }
+

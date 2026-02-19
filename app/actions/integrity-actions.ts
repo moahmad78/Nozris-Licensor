@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { getClientLicenseDetails } from './client-integration';
 import { revalidatePath } from 'next/cache';
 
@@ -71,3 +71,4 @@ export async function getIntegrityStatus() {
     // Map kycStatus to a generic status if needed, or just return what we have
     return client ? { ...client, status: client.kycStatus } : null;
 }
+

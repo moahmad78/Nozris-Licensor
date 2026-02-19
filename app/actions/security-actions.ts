@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 import { pusherServer } from '@/lib/pusher';
 
@@ -88,3 +88,4 @@ export async function removeFromGlobalBlacklist(ip: string) {
         return { error: "Failed to remove from global blacklist" };
     }
 }
+

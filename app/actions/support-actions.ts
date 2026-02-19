@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
@@ -223,3 +223,5 @@ export async function getSupportAnalytics() {
         };
     }
 }
+
+

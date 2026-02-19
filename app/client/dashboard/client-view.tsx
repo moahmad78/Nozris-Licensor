@@ -118,7 +118,7 @@ export function ClientDashboardView({
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-green-800">✅ Verification Successful!</h3>
-                                    <p className="text-sm text-green-700">The Licensr Team has verified your documents. Your high-security license is now ACTIVE. 🛡️</p>
+                                    <p className="text-sm text-green-700">The Nozris Team has verified your documents. Your high-security license is now ACTIVE. 🛡️</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2">

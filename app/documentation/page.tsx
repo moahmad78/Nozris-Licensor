@@ -49,7 +49,7 @@ export default function DocumentationPage() {
                             <ShieldCheck className="w-6 h-6 text-black" />
                         </div>
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-500">
-                            Licensr. <span className="text-amber-500 uppercase text-[10px] tracking-[0.3em] font-bold">Absolute Authority</span>
+                            Nozris. <span className="text-amber-500 uppercase text-[10px] tracking-[0.3em] font-bold">Absolute Authority</span>
                         </span>
                     </div>
                     <div className="flex items-center gap-8">
@@ -72,11 +72,11 @@ export default function DocumentationPage() {
                             🛡️ Level 9 Sentinel Security
                         </div>
                         <h1 className="text-5xl sm:text-8xl font-black tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-gray-600 max-w-5xl mx-auto leading-[0.9] animate-in fade-in slide-in-from-bottom-8 duration-700">
-                            The Licensr. <br />
+                            The Nozris. <br />
                             <span className="text-amber-500 italic">God-Shield.</span>
                         </h1>
                         <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium animate-in fade-in slide-in-from-bottom-10 duration-700 delay-100 italic">
-                            "Without Licensr., your code is bleeding revenue. With it, you are an impenetrable digital fortress. This is your only defense against digital extinction."
+                            "Without Nozris., your code is bleeding revenue. With it, you are an impenetrable digital fortress. This is your only defense against digital extinction."
                         </p>
                     </div>
                 </section>
@@ -250,7 +250,7 @@ const DOMAIN = window.location.hostname;
                     <div className="grid md:grid-cols-4 gap-12 mb-20 text-center md:text-left">
                         <div className="col-span-2 space-y-8">
                             <div className="font-black text-3xl tracking-tighter flex items-center justify-center md:justify-start gap-3 mb-6">
-                                Licensr.
+                                Nozris.
                             </div>
                             <div className="space-y-4">
                                 <h3 className="text-xl font-black uppercase italic tracking-widest text-amber-500">Mohd Ahmad's Personal Oath</h3>
@@ -288,7 +288,7 @@ const DOMAIN = window.location.hostname;
                     </div>
                     <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
                         <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-700">
-                            &copy; {new Date().getFullYear()} Licensr. System | All Rights Reserved.
+                            &copy; {new Date().getFullYear()} Nozris. System | All Rights Reserved.
                         </p>
                         <div className="flex gap-6">
                             <Link href="/legal" className="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-white transition-colors">Privacy Policy</Link>

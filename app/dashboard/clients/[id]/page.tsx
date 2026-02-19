@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import {
     User, Shield, Globe, Calendar, CreditCard,
@@ -29,7 +29,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
 
     // Prepare Detailed Export Data
     const detailedHistory = [
-        ...licenses.map(l => ({
+        ...licenses.map((l: any) => ({
             "Event Date": new Date(l.createdAt).toLocaleString(),
             "Type": "LICENSE_ISSUED",
             "Plan": l.planName,
@@ -38,7 +38,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
             "Expiry Date": new Date(l.expiresAt).toLocaleDateString(),
             "Details": `Issued for ${l.domain}`
         })),
-        ...activities.filter(a => a.type === 'CRITICAL' || a.action.includes('BLOCK')).map(a => ({
+        ...activities.filter((a: any) => a.type === 'CRITICAL' || a.action.includes('BLOCK')).map((a: any) => ({
             "Event Date": new Date(a.createdAt).toLocaleString(),
             "Type": "SECURITY_EVENT",
             "Plan": "-",
@@ -50,7 +50,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
     ].sort((a, b) => new Date(b["Event Date"]).getTime() - new Date(a["Event Date"]).getTime());
 
     // Stats calculation
-    const totalSpent = licenses.reduce((acc, curr) => acc + curr.monthlyPrice, 0); // Need real invoice table for precision, using plan price as proxy
+    const totalSpent = licenses.reduce((acc: number, curr: any) => acc + curr.monthlyPrice, 0); // Need real invoice table for precision, using plan price as proxy
     const joinDate = new Date(client.createdAt);
     const daysSince = Math.floor((new Date().getTime() - joinDate.getTime()) / (1000 * 3600 * 24));
 
@@ -141,7 +141,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
                     </div>
                     <div>
                         <p className="text-xs text-gray-400 uppercase font-bold tracking-wider">Active Licenses</p>
-                        <p className="text-2xl font-bold text-gray-900">{licenses.filter(l => l.status === 'ACTIVE').length}</p>
+                        <p className="text-2xl font-bold text-gray-900">{licenses.filter((l: any) => l.status === 'ACTIVE').length}</p>
                     </div>
                 </div>
             </div>
@@ -172,7 +172,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
                             </div>
 
                             {/* Map recorded activities */}
-                            {activities.map((activity, idx) => (
+                            {activities.map((activity: any, idx: number) => (
                                 <div key={activity.id} className="relative pl-12">
                                     <div className={`absolute left-2.5 top-0 w-3 h-3 rounded-full border-4
                                         ${activity.type === 'CRITICAL' ? 'bg-red-500 border-red-100' :
@@ -188,7 +188,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
                             ))}
 
                             {/* Subscription History */}
-                            {licenses.map(license => (
+                            {licenses.map((license: any) => (
                                 <div key={license.id} className="relative pl-12">
                                     <div className="absolute left-2.5 top-0 w-3 h-3 rounded-full bg-black border-4 border-gray-200"></div>
                                     <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
@@ -310,12 +310,12 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
                             <div className="text-right">
                                 <p className="text-[10px] text-gray-400 font-bold uppercase">Status</p>
                                 <p className={`text-xs font-bold ${licenses.some(l => l.status === 'TERMINATED') ? 'text-red-600' : 'text-green-600'}`}>
-                                    {licenses.some(l => l.status === 'TERMINATED') ? 'TERMINATED' : 'In Good Standing'}
+                                    {licenses.some((l: any) => l.status === 'TERMINATED') ? 'TERMINATED' : 'In Good Standing'}
                                 </p>
                             </div>
                         </div>
 
-                        {licenses.some(l => l.status === 'TERMINATED') ? (
+                        {licenses.some((l: any) => l.status === 'TERMINATED') ? (
                             <form action={async () => {
                                 'use server';
                                 await restoreClientAccount(client.email);

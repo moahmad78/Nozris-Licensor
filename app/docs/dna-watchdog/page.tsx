@@ -12,7 +12,7 @@ export default function DNAWatchdogDocs() {
                         <div className="p-2 bg-red-600 rounded-lg group-hover:bg-red-500 transition-colors">
                             <Shield size={24} className="text-white" />
                         </div>
-                        <span className="text-xl font-bold tracking-tight">Licensr<span className="text-red-500">.docs</span></span>
+                        <span className="text-xl font-bold tracking-tight">Nozris<span className="text-red-500">.docs</span></span>
                     </Link>
                     <nav className="flex gap-6 text-sm font-medium text-gray-400">
                         <Link href="/docs/command-dashboard" className="hover:text-white transition-colors">Command Center</Link>
@@ -30,7 +30,7 @@ export default function DNAWatchdogDocs() {
                         DNA Watchdog<span className="text-red-600">.</span>
                     </h1>
                     <p className="text-xl text-gray-400 leading-relaxed">
-                        The central nervous system of Licensr. It ensures that the code running on your server is the exact code you deployed, down to the last byte. No modifications, no nulled scripts, no unauthorized forks.
+                        The central nervous system of Nozris. It ensures that the code running on your server is the exact code you deployed, down to the last byte. No modifications, no nulled scripts, no unauthorized forks.
                     </p>
                 </div>
 
@@ -83,7 +83,7 @@ export default function DNAWatchdogDocs() {
                             <div>
                                 <h3 className="text-lg font-bold text-white mb-1">CPanel / FTP Lock</h3>
                                 <p className="text-gray-400 text-sm">
-                                    Even if a thief has FTP access, they cannot simply delete the Licensr folder. Our script injects a `chattr +i` immutable attribute (on Linux) or uses file-stream locking (on Windows) to prevent deletion while the process is running.
+                                    Even if a thief has FTP access, they cannot simply delete the Nozris folder. Our script injects a `chattr +i` immutable attribute (on Linux) or uses file-stream locking (on Windows) to prevent deletion while the process is running.
                                 </p>
                             </div>
                         </div>
@@ -108,7 +108,7 @@ export default function DNAWatchdogDocs() {
                         <Laptop2 className="text-indigo-500" /> Client-Side Integrity Monitoring
                     </h2>
                     <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                        Licensr's protection extends beyond the server. We ensure that the experience delivered to the end-user (browser or mobile app) is exactly what you intended, free from client-side injections or malware.
+                        Nozris protection extends beyond the server. We ensure that the experience delivered to the end-user (browser or mobile app) is exactly what you intended, free from client-side injections or malware.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-8">
@@ -148,7 +148,7 @@ export default function DNAWatchdogDocs() {
                             <div className="w-3 h-3 rounded-full bg-red-500"></div>
                             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                            <span className="ml-2 text-xs font-mono text-gray-400">licensr.config.js</span>
+                            <span className="ml-2 text-xs font-mono text-gray-400">nozris.config.js</span>
                         </div>
                         <div className="p-6 overflow-x-auto">
                             <pre className="text-sm font-mono text-gray-300">

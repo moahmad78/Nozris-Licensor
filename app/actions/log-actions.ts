@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { getClientLicenseDetails } from './client-integration';
 
 export async function getTamperLogs(licenseId?: string) {
@@ -21,3 +21,4 @@ export async function getTamperLogs(licenseId?: string) {
         take: 50
     });
 }
+

@@ -26,7 +26,7 @@ export default function LockdownPage() {
         window.history.pushState(null, '', window.location.href);
         const handlePopState = () => {
             window.history.pushState(null, '', window.location.href);
-            alert("ILLEGAL NAVIGATION: YOUR BROWSER IS LOCKED BY LICENSR.");
+            alert("ILLEGAL NAVIGATION: YOUR BROWSER IS LOCKED BY NOZRIS.");
         };
 
         window.addEventListener('contextmenu', handleContextMenu);
@@ -74,7 +74,7 @@ export default function LockdownPage() {
                     <div className="space-y-2">
                         <p className="text-2xl font-bold text-red-100 italic">"CRITICAL SECURITY BREACH DETECTED"</p>
                         <p className="text-sm text-red-200 leading-relaxed font-medium">
-                            Your IP Address, Physical Geo-Location, and Device ID have been captured and transmitted to the Licensr Security Command.
+                            Your IP Address, Physical Geo-Location, and Device ID have been captured and transmitted to the Nozris Security Command.
                             Illegal tampering attempt has been logged. You may face JAIL TIME under Cyber Crime Prevention Laws.
                         </p>
                     </div>
@@ -85,8 +85,8 @@ export default function LockdownPage() {
                         <p className="text-xs uppercase tracking-[0.2em] text-red-300 font-black">Release Request Protocol</p>
                         <p className="text-sm font-medium">To request a system release, apologize and explain your actions to the Administrator:</p>
                         <div className="flex flex-col gap-3">
-                            <a href="mailto:support@licensr.com" className="bg-white text-red-600 py-3 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-transform">
-                                EMAIL LICENSR ADMIN
+                            <a href="mailto:support@nozris.com" className="bg-white text-red-600 py-3 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-transform">
+                                EMAIL NOZRIS ADMIN
                             </a>
                             <p className="text-[10px] text-red-300 italic font-medium">Unique Jail ID: {Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
                         </div>
@@ -94,7 +94,7 @@ export default function LockdownPage() {
                 </div>
 
                 <p className="text-[10px] text-gray-300 font-bold uppercase tracking-[0.3em] mt-10">
-                    Proprietary Guard System by Licensr | Security Division
+                    Proprietary Guard System by Nozris | Security Division
                 </p>
             </div>
 

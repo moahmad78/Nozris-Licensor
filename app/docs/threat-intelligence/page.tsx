@@ -22,7 +22,7 @@ export default function ThreatIntelligencePage() {
                             GLOBAL THREAT<br />INTELLIGENCE
                         </h1>
                         <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                            Licensr's Neural Network processes over 50,000 threats per second.
+                            Nozris Neural Network processes over 50,000 threats per second.
                             Our "Real-Time Verification" system provides instant validation of global breaches.
                         </p>
                     </div>
@@ -33,7 +33,7 @@ export default function ThreatIntelligencePage() {
                             <Brain className="w-12 h-12 text-cyan-500 mb-6 group-hover:scale-110 transition-transform" />
                             <h3 className="text-2xl font-bold mb-4">Neural Ad-Hoc Analysis</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Our AI models don't just react; they predict. By analyzing traffic patterns across 40+ countries, Licensr identifies zero-day exploits before they execute.
+                                Our AI models don't just react; they predict. By analyzing traffic patterns across 40+ countries, Nozris identifies zero-day exploits before they execute.
                             </p>
                         </div>
                         <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-red-500/30 transition-all group">
@@ -81,7 +81,7 @@ export default function ThreatIntelligencePage() {
                         </p>
                         <Link href="/pricing">
                             <button className="bg-white text-black px-8 py-4 rounded-xl font-black uppercase tracking-wide hover:scale-105 transition-transform">
-                                Deploy Licensr
+                                Deploy Nozris
                             </button>
                         </Link>
                     </div>

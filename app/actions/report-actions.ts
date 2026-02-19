@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { getClientLicenseDetails } from './client-integration';
 
 export async function getMonthlyReport() {
@@ -44,3 +44,4 @@ export async function getMonthlyReport() {
 
     return report;
 }
+

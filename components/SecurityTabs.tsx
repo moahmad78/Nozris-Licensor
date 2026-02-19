@@ -10,11 +10,11 @@ export default function SecurityTabs() {
         { id: 'command-dashboard', label: 'Command Dashboard', icon: <LayoutDashboard size={18} /> },
         { id: 'universal-protection', label: 'Universal Protection', icon: <Globe size={18} /> },
         { id: 'ssl-secure', label: 'SSL Secure', icon: <ShieldCheck size={18} /> },
-        { id: 'proxy-shield', label: 'Proxy Shield', icon: <Server size={18} /> },
+        { id: 'proxy-shield', label: 'Proxy Guard', icon: <Server size={18} /> },
         { id: 'watchdog', label: 'Decentralized Watchdog', icon: <Search size={18} /> },
         { id: 'identity-verified', label: 'Identity Verified', icon: <Gavel size={18} /> },
         { id: 'real-world-threats', label: 'Real-world Threats', icon: <AlertTriangle size={18} /> },
-        { id: 'legal-shield', label: 'Legal Shield', icon: <Scale size={18} /> },
+        { id: 'legal-shield', label: 'Legal Defense', icon: <Scale size={18} /> },
         { id: 'client-defense', label: 'Client Defense', icon: <MonitorX size={18} /> },
     ];
 
@@ -46,7 +46,7 @@ export default function SecurityTabs() {
         },
         'universal-protection': {
             title: 'One Shield. Every Platform.',
-            description: 'Licensr is platform-agnostic. ChecksumDNA ensures consistency across Web, Mobile, Desktop (.exe/.dmg), and CMS environments like WordPress and Shopify.',
+            description: 'Nozris is platform-agnostic. ChecksumDNA ensures consistency across Web, Mobile, Desktop (.exe/.dmg), and CMS environments like WordPress and Shopify.',
             color: 'text-indigo-400',
             border: 'border-indigo-500/50',
             bg: 'bg-indigo-500/10',
@@ -146,8 +146,8 @@ export default function SecurityTabs() {
             )
         },
         'legal-shield': {
-            title: 'Automated Legal Shield',
-            description: 'Licensr automatically generates Cease & Desist notices populated with the intruder\'s forensic data, formatted for the Indian IT Act 2000 and DMCA compliance.',
+            title: 'Automated Legal Defense',
+            description: 'Nozris automatically generates Cease & Desist notices populated with the intruder\'s forensic data, formatted for the Indian IT Act 2000 and DMCA compliance.',
             color: 'text-yellow-400',
             border: 'border-yellow-500/50',
             bg: 'bg-yellow-500/10',

@@ -11,7 +11,7 @@ export default function SetupWizard() {
     const [isLoading, setIsLoading] = useState(false);
     const [verificationStatus, setVerificationStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-    const scriptTag = `<script src="https://bharatfile.com/shield.js?key=${licenseKey}"></script>`;
+    const scriptTag = `<script src="https://nozris.com/nozris.js?key=${licenseKey}"></script>`;
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(scriptTag);
@@ -58,7 +58,7 @@ export default function SetupWizard() {
                 {/* Steps Visual */}
                 <div className="space-y-8">
                     <h1 className="text-4xl font-black uppercase tracking-tighter">
-                        Deploy <span className="text-cyan-400">Shield</span>
+                        Deploy <span className="text-cyan-400">Nozris</span>
                     </h1>
                     <div className="space-y-6">
                         {[
@@ -129,7 +129,7 @@ export default function SetupWizard() {
                                 <CheckCircle className="w-10 h-10 text-black" />
                             </div>
                             <h2 className="text-2xl font-black uppercase text-green-500">System Secure</h2>
-                            <p className="text-slate-400">Your digital assets are now under the protection of the Bharat File God-Shield.</p>
+                            <p className="text-slate-400">Your digital assets are now under the protection of the Nozris God-Shield.</p>
                             <button className="px-8 py-3 border border-white/10 rounded-full hover:bg-white/5 transition-all text-sm font-bold uppercase tracking-widest">
                                 Go to Dashboard
                             </button>

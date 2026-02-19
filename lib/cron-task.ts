@@ -1,5 +1,5 @@
 import cron from 'node-cron';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { sendEmail } from '@/lib/email';
 import { getRenewalEmailTemplate } from '@/lib/email-templates';
 
@@ -104,3 +104,4 @@ async function checkAndSendReminders() {
         console.error("Error in cron job:", error);
     }
 }
+

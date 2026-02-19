@@ -2,7 +2,7 @@
 
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 
 export async function uploadKYC(formData: FormData) {
@@ -46,3 +46,4 @@ export async function uploadKYC(formData: FormData) {
         return { error: 'Failed to upload document.' };
     }
 }
+

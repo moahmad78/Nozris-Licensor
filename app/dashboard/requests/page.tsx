@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { approveRenewal, rejectRenewal } from '@/lib/actions';
 import { Check, X, Clock, FileText } from 'lucide-react';
 import { Toaster } from 'sonner';
@@ -108,3 +108,4 @@ export default async function RequestsPage() {
         </div>
     );
 }
+

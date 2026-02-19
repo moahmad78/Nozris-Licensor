@@ -1,5 +1,5 @@
 import { notFound, redirect } from 'next/navigation';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { getUnifiedHistory } from '@/app/actions/history';
 import HistoryTimeline from '@/components/HistoryTimeline';
 

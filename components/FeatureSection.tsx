@@ -33,7 +33,7 @@ const features = [
 export default function FeatureSection() {
     return (
         <section className="py-24 bg-black text-white">
-            <div className="container mx-auto px-4">
+            <div className="w-full px-6 md:px-12">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">
                         Military-Grade Defense

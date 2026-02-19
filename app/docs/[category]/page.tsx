@@ -43,7 +43,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     // Default fallback if data missing (safety net)
     const content = data || {
         title: 'Security Documentation',
-        subtitle: 'Detailed technical specifications for Licensr protection modules.',
+        subtitle: 'Detailed technical specifications for Nozris protection modules.',
         icon: <Terminal className="w-12 h-12 text-gray-500" />,
         color: 'text-gray-500'
     };
@@ -96,7 +96,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                                     our plugin injects encrypted heartbeat checks into random parts of your chunk files.
                                 </p>
                                 <div className="bg-black p-4 rounded-xl border border-gray-800 font-mono text-xs text-gray-500">
-                                    <span className="text-purple-400">return</span> window.__LICENSR__ ? <span className="text-blue-400">originalFn()</span> : <span className="text-red-500">crash()</span>;
+                                    <span className="text-purple-400">return</span> window.__NOZRIS__ ? <span className="text-blue-400">originalFn()</span> : <span className="text-red-500">crash()</span>;
                                 </div>
                             </div>
                             <div>

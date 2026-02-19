@@ -1,0 +1,113 @@
+
+> dasbaord@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local, .env
+- Experiments (use with caution):
+  · serverActions
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 3 errors:
+./lib/prisma.ts:2:1
+Export PrismaLibSql doesn't exist in target module
+[0m [90m 1 |[39m [36mimport[39m { [33mPrismaClient[39m } [36mfrom[39m [32m'@prisma/client'[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { [33mPrismaLibSql[39m } [36mfrom[39m [32m'@prisma/adapter-libsql'[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m [36mimport[39m { createClient } [36mfrom[39m [32m'@libsql/client'[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mconst[39m globalForPrisma [33m=[39m global [36mas[39m unknown [36mas[39m { prisma[33m:[39m [33mPrismaClient[39m }[0m
+
+The export PrismaLibSql was not found in module [project]/node_modules/@prisma/adapter-libsql/dist/index.mjs [app-route] (ecmascript).
+Did you mean to import PrismaLibSQL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [App Route]:
+    ./lib/prisma.ts
+    ./app/api/client/kyc/route.ts
+
+  #2 [Server Component]:
+    ./lib/prisma.ts
+    ./app/actions/log-actions.ts
+
+  #3 [Server Component]:
+    ./lib/prisma.ts
+    ./app/dashboard/page.tsx
+
+  #4 [Instrumentation]:
+    ./lib/prisma.ts
+    ./lib/cron-task.ts
+    ./instrumentation.ts
+
+
+./lib/prisma.ts:2:1
+Export PrismaLibSql doesn't exist in target module
+[0m [90m 1 |[39m [36mimport[39m { [33mPrismaClient[39m } [36mfrom[39m [32m'@prisma/client'[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { [33mPrismaLibSql[39m } [36mfrom[39m [32m'@prisma/adapter-libsql'[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m [36mimport[39m { createClient } [36mfrom[39m [32m'@libsql/client'[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mconst[39m globalForPrisma [33m=[39m global [36mas[39m unknown [36mas[39m { prisma[33m:[39m [33mPrismaClient[39m }[0m
+
+The export PrismaLibSql was not found in module [project]/node_modules/@prisma/adapter-libsql/dist/index.mjs [app-rsc] (ecmascript).
+Did you mean to import PrismaLibSQL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [App Route]:
+    ./lib/prisma.ts
+    ./app/api/client/kyc/route.ts
+
+  #2 [Server Component]:
+    ./lib/prisma.ts
+    ./app/actions/log-actions.ts
+
+  #3 [Server Component]:
+    ./lib/prisma.ts
+    ./app/dashboard/page.tsx
+
+  #4 [Instrumentation]:
+    ./lib/prisma.ts
+    ./lib/cron-task.ts
+    ./instrumentation.ts
+
+
+./lib/prisma.ts:2:1
+Export PrismaLibSql doesn't exist in target module
+[0m [90m 1 |[39m [36mimport[39m { [33mPrismaClient[39m } [36mfrom[39m [32m'@prisma/client'[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { [33mPrismaLibSql[39m } [36mfrom[39m [32m'@prisma/adapter-libsql'[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m [36mimport[39m { createClient } [36mfrom[39m [32m'@libsql/client'[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mconst[39m globalForPrisma [33m=[39m global [36mas[39m unknown [36mas[39m { prisma[33m:[39m [33mPrismaClient[39m }[0m
+
+The export PrismaLibSql was not found in module [project]/node_modules/@prisma/adapter-libsql/dist/index.mjs [instrumentation] (ecmascript).
+Did you mean to import PrismaLibSQL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [App Route]:
+    ./lib/prisma.ts
+    ./app/api/client/kyc/route.ts
+
+  #2 [Server Component]:
+    ./lib/prisma.ts
+    ./app/actions/log-actions.ts
+
+  #3 [Server Component]:
+    ./lib/prisma.ts
+    ./app/dashboard/page.tsx
+
+  #4 [Instrumentation]:
+    ./lib/prisma.ts
+    ./lib/cron-task.ts
+    ./instrumentation.ts
+
+
+    at <unknown> (./lib/prisma.ts:2:1)
+    at <unknown> (./lib/prisma.ts:2:1)
+    at <unknown> (./lib/prisma.ts:2:1)

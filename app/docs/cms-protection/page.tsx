@@ -12,7 +12,7 @@ export default function CMSProtectionDocs() {
                         <div className="p-2 bg-orange-600 rounded-lg group-hover:bg-orange-500 transition-colors">
                             <Shield size={24} className="text-white" />
                         </div>
-                        <span className="text-xl font-bold tracking-tight">Licensr<span className="text-orange-500">.cms</span></span>
+                        <span className="text-xl font-bold tracking-tight">Nozris<span className="text-orange-500">.cms</span></span>
                     </Link>
                     <nav className="flex gap-6 text-sm font-medium text-gray-400">
                         <Link href="/docs/command-dashboard" className="hover:text-white transition-colors">Command Center</Link>
@@ -43,7 +43,7 @@ export default function CMSProtectionDocs() {
 
                         <h3 className="text-2xl font-bold text-white mb-4">Plugin & Theme Locking</h3>
                         <p className="text-gray-400 mb-6 leading-relaxed">
-                            Licensr injects a persistent license check into the `functions.php` or main plugin file using obfuscated bytecode. This check validates against our central server on every activation or cron cycle.
+                            Nozris injects a persistent license check into the `functions.php` or main plugin file using obfuscated bytecode. This check validates against our central server on every activation or cron cycle.
                         </p>
 
                         <div className="grid md:grid-cols-2 gap-6">
@@ -78,12 +78,12 @@ export default function CMSProtectionDocs() {
 
                         <h3 className="text-2xl font-bold text-white mb-4">Liquid Template verification</h3>
                         <p className="text-gray-400 mb-6 leading-relaxed">
-                            Since Shopify code is client-visible, we use a hybrid approach. Critical logic is moved to Licensr's hosted API, and the Liquid theme fetches it dynamically. If the store URL is not authorized, the assets simply fail to load.
+                            Since Shopify code is client-visible, we use a hybrid approach. Critical logic is moved to Nozris hosted API, and the Liquid theme fetches it dynamically. If the store URL is not authorized, the assets simply fail to load.
                         </p>
 
                         <div className="bg-black border border-gray-800 p-4 rounded-xl font-mono text-xs text-gray-400 overflow-x-auto">
                             <span className="text-gray-500">{'<!-- theme.liquid -->'}</span> <br />
-                            &lt;script src="https://api.licensr.com/verify?store={'{{ shop.url }}'}&theme_id=1029" async&gt;&lt;/script&gt; <br />
+                            &lt;script src="https://api.nozris.com/verify?store={'{{ shop.url }}'}&theme_id=1029" async&gt;&lt;/script&gt; <br />
                             <span className="text-green-500">{'{{ content_for_header }}'}</span>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ export default function CMSProtectionDocs() {
                         <Server className="text-blue-500" /> Preventing Code Theft
                     </h2>
                     <p className="text-gray-400 text-lg mb-6">
-                        The biggest risk for CMS developers is customers buying one license and installing it on 50 client sites. Licensr solves this with <strong>Domain Locking</strong>.
+                        The biggest risk for CMS developers is customers buying one license and installing it on 50 client sites. Nozris solves this with <strong>Domain Locking</strong>.
                     </p>
                     <ul className="space-y-4">
                         <li className="flex items-center gap-4 bg-gray-900 p-4 rounded-xl border border-gray-800">

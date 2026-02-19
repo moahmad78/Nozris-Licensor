@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { getClientLicenseDetails } from './client-integration';
 import { revalidatePath } from 'next/cache';
 import { addDays } from 'date-fns';
@@ -129,7 +129,7 @@ export async function rejectPayment(paymentId: string, reason: string) {
     // REJECTION ALERT
     if (payment.license.clientPhone) {
         const { sendWhatsAppMessage } = await import('@/lib/whatsapp');
-        const alertMsg = `⚠️ PAYMENT REJECTED: Hi ${payment.license.clientEmail},\n\nAhmad Bhai has rejected your payment for Licensr.\nReason: ${reason}\n\nPlease resubmit with correct details.`;
+        const alertMsg = `⚠️ PAYMENT REJECTED: Hi ${payment.license.clientEmail},\n\nAhmad Bhai has rejected your payment for Nozris.\nReason: ${reason}\n\nPlease resubmit with correct details.`;
 
         await sendWhatsAppMessage(payment.license.clientPhone, alertMsg);
     }
@@ -137,3 +137,4 @@ export async function rejectPayment(paymentId: string, reason: string) {
     revalidatePath('/admin/payments');
     return { success: true };
 }
+

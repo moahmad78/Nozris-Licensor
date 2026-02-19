@@ -4,14 +4,14 @@ import { Github, Twitter, Linkedin, MessageSquare, ShieldCheck, Ticket, Server, 
 export default function Footer() {
     return (
         <footer className="bg-black border-t border-gray-900 text-gray-400 py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full px-6 md:px-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
 
                     {/* Brand/About */}
                     <div className="md:col-span-1 space-y-6">
                         <div className="flex items-center gap-2">
                             <ShieldCheck className="w-8 h-8 text-blue-600" />
-                            <h3 className="text-2xl font-black text-white tracking-tight text-white uppercase">Licensr</h3>
+                            <h3 className="text-2xl font-black text-white tracking-tight text-white uppercase">Nozris</h3>
                         </div>
                         <p className="text-sm leading-relaxed text-gray-500 font-medium italic">
                             Advanced Code Protection & Legal Enforcement. Safeguarding the future of software with military-grade precision.
@@ -58,13 +58,13 @@ export default function Footer() {
                             <li><Link href="/legal/notice" className="hover:text-blue-500 transition-colors text-sm flex items-center gap-2"><Scale size={14} /> Legal Notice & IP</Link></li>
                             <li><Link href="/legal/privacy" className="hover:text-blue-500 transition-colors text-sm">Privacy Policy</Link></li>
                             <li><Link href="/legal/terms" className="hover:text-blue-500 transition-colors text-sm">Terms & Conditions</Link></li>
-                            <li><Link href="/manifesto" className="hover:text-red-500 transition-colors text-sm font-bold italic underline">The Licensr Manifesto</Link></li>
+                            <li><Link href="/manifesto" className="hover:text-red-500 transition-colors text-sm font-bold italic underline">The Nozris Manifesto</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-sm font-medium text-gray-600 uppercase tracking-widest">© 2026 Licensr Security Solutions. Absolute Protection.</p>
+                    <p className="text-sm font-medium text-gray-600 uppercase tracking-widest">© 2026 Nozris Security Solutions. Absolute Protection.</p>
 
                     <div className="flex flex-col items-end gap-1">
                         <div className="flex items-center gap-2 text-sm text-gray-500">

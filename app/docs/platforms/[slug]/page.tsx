@@ -30,7 +30,7 @@ export default async function PlatformDocs({ params }: { params: Promise<{ slug:
                 { name: "Kotlin", icon: <Coffee size={24} />, desc: "Root detection & signature verification." },
                 { name: "Flutter", icon: <Layers size={24} />, desc: "Dart code snapshot integrity checks." },
             ],
-            protectionLogic: "For mobile, Licensr injects a native binary layer that runs parallel to the main thread. It monitors system calls for suspicious patterns (like debugger attachment or memory dump attempts) and crashes the app immediately if compromised."
+            protectionLogic: "For mobile, Nozris injects a native binary layer that runs parallel to the main thread. It monitors system calls for suspicious patterns (like debugger attachment or memory dump attempts) and crashes the app immediately if compromised."
         },
         games: {
             title: "Securing Game Ecosystem",
@@ -63,7 +63,7 @@ export default async function PlatformDocs({ params }: { params: Promise<{ slug:
                         <div className="p-2 bg-blue-600 rounded-lg group-hover:bg-blue-500 transition-colors">
                             <Shield size={24} className="text-white" />
                         </div>
-                        <span className="text-xl font-bold tracking-tight">Licensr<span className="text-blue-500">.docs</span></span>
+                        <span className="text-xl font-bold tracking-tight">Nozris<span className="text-blue-500">.docs</span></span>
                     </Link>
                     <nav className="flex gap-6 text-sm font-medium text-gray-400">
                         <Link href="/docs/command-dashboard" className="hover:text-white transition-colors">Command Center</Link>

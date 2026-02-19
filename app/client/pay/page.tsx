@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { submitPayment } from '@/app/actions/payment-actions';
 import { QrCode, ArrowRight, ShieldCheck, CreditCard } from 'lucide-react';
 import { toast } from 'sonner';

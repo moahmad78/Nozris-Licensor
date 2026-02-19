@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 
 export async function getPendingPayments() {
     return await prisma.payment.findMany({
@@ -9,3 +9,4 @@ export async function getPendingPayments() {
         orderBy: { createdAt: 'desc' }
     });
 }
+

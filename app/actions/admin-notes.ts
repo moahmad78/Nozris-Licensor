@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 
 export async function updateAdminNotes(clientId: string, notes: string) {
@@ -16,3 +16,4 @@ export async function updateAdminNotes(clientId: string, notes: string) {
         return { success: false };
     }
 }
+

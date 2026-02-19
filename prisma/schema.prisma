@@ -1,6 +1,7 @@
 generator client {
-  provider   = "prisma-client-js"
-  engineType = "library"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  engineType      = "library"
 }
 
 datasource db {
@@ -15,9 +16,16 @@ model User {
   password         String
   role             String   @default("USER")
   isApproved       Boolean  @default(false)
+  emailVerified    DateTime?
   twoFactorSecret  String?
   twoFactorEnabled Boolean  @default(false)
   createdAt        DateTime @default(now())
+  phoneNumber      String?
+  companyName      String?
+  fullAddress      String?
+  profileImage     String?
+  whatsappNumber   String?
+  lastUpdated      DateTime?
 }
 
 model License {
@@ -51,6 +59,8 @@ model License {
   payments         Payment[]
   subscriptionStatus String?     @default("ACTIVE")
   lastPaymentDate    DateTime?
+  stagingDomain      String?
+  devModeUntil       DateTime?
   TamperEvent      TamperEvent[]
 
   @@index([licenseKey])
@@ -147,12 +157,29 @@ model Client {
   lastPaymentDate    DateTime?
   billingHistory     String?       @db.Text
   tamperEvents       TamperEvent[]
+  kycDocuments       KYCDocument[]
   updatedAt          DateTime      @default(now()) @updatedAt
   createdAt          DateTime      @default(now())
 
   @@index([email])
   @@index([domain])
   @@index([kycStatus])
+}
+
+model KYCDocument {
+  id          String   @id @default(uuid())
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id])
+  type        String
+  documentUrl String
+  status      String   @default("PENDING")
+  rejectionReason String?
+  uploadedAt  DateTime @default(now())
+  reviewedAt  DateTime?
+  reviewedBy  String?
+
+  @@index([clientId])
+  @@index([status])
 }
 
 model Payment {
@@ -304,7 +331,38 @@ model SecurityReport {
   tamperAttempts Int      @default(0)
   uptime         Float    @default(99.99)
   generatedAt    DateTime @default(now())
-
   @@unique([clientEmail, month])
   @@index([clientEmail])
+}
+
+model SecurityLog {
+  id        String   @id @default(uuid())
+  licenseId String?
+  ip        String
+  country   String?
+  threat    String?  @default("None")
+  status    String   @default("Clean") 
+  timestamp DateTime @default(now())
+
+  @@index([licenseId])
+  @@index([timestamp])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([token])
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
 }

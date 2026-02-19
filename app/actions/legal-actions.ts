@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 
 export async function getPolicy(type: 'TERMS' | 'PRIVACY' | 'REFUND') {
@@ -35,3 +35,4 @@ export async function updatePolicy(type: 'TERMS' | 'PRIVACY' | 'REFUND', content
         return { error: "Failed to update policy" };
     }
 }
+

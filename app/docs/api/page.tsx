@@ -8,7 +8,7 @@ export default function ApiDocsPage() {
                 <div className="mb-12 border-b border-gray-800 pb-8">
                     <h1 className="text-4xl font-black text-white mb-4">API Reference</h1>
                     <p className="text-xl text-gray-400">
-                        Direct integration endpoints for the Licensr Security Engine.
+                        Direct integration endpoints for the Nozris Security Engine.
                     </p>
                 </div>
 
@@ -126,7 +126,7 @@ export default function ApiDocsPage() {
                             <div className="bg-blue-900/10 border border-blue-500/20 rounded-xl p-6">
                                 <h4 className="text-blue-400 font-bold mb-2 flex items-center gap-2"><Server size={16} /> Security Note</h4>
                                 <p className="text-sm text-gray-400">
-                                    All API requests must include the <code className="text-white">X-Licensr-Signature</code> header.
+                                    All API requests must include the <code className="text-white">X-Nozris-Signature</code> header.
                                     Requests without a valid signature will be rejected immediately by the edge firewall.
                                 </p>
                             </div>

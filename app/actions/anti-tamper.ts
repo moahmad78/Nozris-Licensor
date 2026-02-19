@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/db";
 import { logActivity } from "./activity";
 import { sendWhatsAppMessage } from "@/lib/whatsapp";
 import { revalidatePath } from "next/cache";
@@ -60,7 +60,7 @@ export async function checkHeartbeats() {
             });
 
             if (client && client.whatsapp) {
-                const clientMsg = `⚠️ *Security Breach Alert!* Hello ${client.name}, we detected that the 'Licensr.' security code has been removed from ${license.domain}. This is a violation of our terms and your website layout may break. Please restore the code immediately or contact Mohd Ahmad (+91 9264920211).`;
+                const clientMsg = `⚠️ *Security Breach Alert!* Hello ${client.name}, we detected that the 'Nozris.' security code has been removed from ${license.domain}. This is a violation of our terms and your website layout may break. Please restore the code immediately or contact Mohd Ahmad (+91 9264920211).`;
                 await sendWhatsAppMessage(client.whatsapp, clientMsg);
             }
 
@@ -83,3 +83,5 @@ export async function checkHeartbeats() {
         return { success: false, error: "Internal Server Error" };
     }
 }
+
+

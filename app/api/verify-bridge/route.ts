@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
         // Fetch the client's page
         const response = await fetch(targetUrl, {
-            headers: { 'User-Agent': 'BharatFile-Shield-Verifier/1.0' }
+            headers: { 'User-Agent': 'Nozris-Verifier/1.0' }
         });
 
         if (!response.ok) {
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
 
         // Check for the script tag
         // We look for specific signature of our script
-        const scriptSignature = `bharatfile.com/shield.js?key=${licenseKey}`;
+        const scriptSignature = `nozris.com/nozris.js?key=${licenseKey}`;
 
         if (html.includes(scriptSignature)) {
             return NextResponse.json({ success: true, message: "Shield Detected Active" });

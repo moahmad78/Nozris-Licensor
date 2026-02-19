@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 
 export async function POST(request: Request) {
     try {
@@ -40,3 +40,4 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Verification failed" }, { status: 500 });
     }
 }
+

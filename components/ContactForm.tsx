@@ -18,15 +18,16 @@ export function ContactForm() {
         e.preventDefault();
         setLoading(true);
 
-        const res = await createSupportTicket({
-            email: formData.email,
-            subject: formData.subject + (formData.subject.includes(formData.name) ? "" : ` - from ${formData.name}`),
-            message: formData.message,
-            priority: 'HIGH'
-        });
+        const payload = new FormData();
+        payload.append('clientEmail', formData.email);
+        payload.append('subject', formData.subject + (formData.subject.includes(formData.name) ? "" : ` - from ${formData.name}`));
+        payload.append('message', formData.message);
+        payload.append('priority', 'HIGH');
+
+        const res = await createSupportTicket(payload);
 
         if (res.success) {
-            toast.success("Message sent directly to Licensr Support. We will reply shortly.");
+            toast.success("Message sent directly to Nozris Support. We will reply shortly.");
             setFormData({ name: '', email: '', subject: 'PRE-SALE QUERY: ', message: '' });
         } else {
             toast.error("Failed to send message. Please try WhatsApp directly.");
@@ -78,7 +79,7 @@ export function ContactForm() {
                             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                             className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-blue-600 transition-colors font-bold appearance-none cursor-pointer"
                         >
-                            <option value="PRE-SALE QUERY: Generic">I have a question about Licensr</option>
+                            <option value="PRE-SALE QUERY: Generic">I have a question about Nozris</option>
                             <option value="PRE-SALE QUERY: Enterprise">I need a Custom Enterprise Plan</option>
                             <option value="PRE-SALE QUERY: Integration">I need help with Integration</option>
                         </select>

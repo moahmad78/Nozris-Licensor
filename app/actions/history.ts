@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 
 export type HistoryEvent = {
     id: string;
@@ -142,3 +142,4 @@ export async function getUnifiedHistory(email: string): Promise<HistoryEvent[]> 
     // Sort by date descending
     return history.sort((a, b) => b.date.getTime() - a.date.getTime());
 }
+

@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { checkIPStatus, registerSuspiciousAttempt } from '@/lib/security';
 import { headers } from 'next/headers';
 
@@ -48,3 +48,4 @@ export async function checkLicenseStatus(key: string) {
         }
     };
 }
+

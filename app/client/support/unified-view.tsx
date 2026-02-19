@@ -89,7 +89,14 @@ export default function ClientUnifiedCenter({ clientEmail }: { clientEmail: stri
     const handleCreateTicket = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const res = await createSupportTicket({ email: clientEmail, subject, message, priority });
+
+        const formData = new FormData();
+        formData.append('clientEmail', clientEmail);
+        formData.append('subject', subject);
+        formData.append('message', message);
+        formData.append('priority', priority);
+
+        const res = await createSupportTicket(formData);
         if (res.success) {
             toast.success("Support request transmission successful.");
             setSubject('');
@@ -109,12 +116,7 @@ export default function ClientUnifiedCenter({ clientEmail }: { clientEmail: stri
         e.preventDefault();
         if (!replyMsg.trim()) return;
         setLoading(true);
-        const res = await sendMessage({
-            ticketId: selectedTicket.id,
-            role: 'CLIENT',
-            name: 'Client',
-            message: replyMsg
-        });
+        const res = await sendMessage(selectedTicket.id, replyMsg, 'Client');
         if (res.success) {
             setReplyMsg('');
         }

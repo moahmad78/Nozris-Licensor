@@ -50,12 +50,12 @@ export const getRenewalEmailTemplate = (
 <body>
   <div class="container">
     <div class="header">
-      ${profile.logo ? `<img src="${profile.logo}" alt="Licensr Logo" class="logo" />` : `<span style="color: #fff; font-weight: 900; font-size: 24px; letter-spacing: -1px;">LICENSR</span>`}
+      ${profile.logo ? `<img src="${profile.logo}" alt="Nozris Logo" class="logo" />` : `<span style="color: #fff; font-weight: 900; font-size: 24px; letter-spacing: -1px;">NOZRIS</span>`}
     </div>
     
     <div class="content">
       <h1 class="h1">Renewal Notice</h1>
-      <p class="subtitle">Your Licensr protection for <strong>${domain}</strong> is expiring.</p>
+      <p class="subtitle">Your Nozris protection for <strong>${domain}</strong> is expiring.</p>
 
       <div class="alert-box">
         ⚠️ Expiring in ${daysLeft} Days <br>
@@ -104,8 +104,8 @@ export const getRenewalEmailTemplate = (
       </div>
 
       <div style="margin-top: 20px; color: #9ca3af;">
-        Team Licensr • Gorakhpur, UP<br>
-        © ${new Date().getFullYear()} Licensr Security Solutions. All rights reserved.
+        Team Nozris • Gorakhpur, UP<br>
+        © ${new Date().getFullYear()} Nozris Security Solutions. All rights reserved.
       </div>
     </div>
   </div>

@@ -2,58 +2,40 @@
 
 import * as React from "react";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover";
+import { Calendar as CalendarIcon, ChevronDown } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export function SmartFilter() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const dateParam = searchParams.get('date');
-    const [date, setDate] = React.useState<Date | undefined>(
-        dateParam ? new Date(dateParam) : new Date()
+    const [date, setDate] = React.useState<string>(
+        dateParam ? dateParam : new Date().toISOString().split('T')[0]
     );
 
-    const handleSelect = (newDate: Date | undefined) => {
+    const handleSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newDate = e.target.value;
         setDate(newDate);
         if (newDate) {
-            const formatted = format(newDate, 'yyyy-MM-dd');
             const params = new URLSearchParams(searchParams.toString());
-            params.set('date', formatted);
+            params.set('date', newDate);
             router.push(`?${params.toString()}`);
         }
     };
 
     return (
-        <Popover>
-            <PopoverTrigger asChild>
-                <Button
-                    variant={"outline"}
-                    className={cn(
-                        "w-[240px] justify-start text-left font-normal bg-white border-gray-200 hover:bg-gray-50",
-                        !date && "text-muted-foreground"
-                    )}
-                >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
-                </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="end">
-                <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={handleSelect}
-                    initialFocus
-                    className="p-3 border rounded-md shadow-sm"
+        <div className="relative">
+            <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <CalendarIcon className="w-4 h-4 text-gray-500" />
+                </div>
+                <input
+                    type="date"
+                    value={date}
+                    onChange={handleSelect}
+                    className="bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
-            </PopoverContent>
-        </Popover>
+            </div>
+        </div>
     );
 }

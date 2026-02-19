@@ -9,7 +9,7 @@ export default function ManifestoPage() {
             <section className="relative py-24 border-b border-gray-800 overflow-hidden">
                 <div className="absolute inset-0 bg-red-900/5 z-0" />
                 <div className="container mx-auto px-6 relative z-10 text-center">
-                    <span className="text-red-500 font-mono text-sm uppercase tracking-widest mb-4 block">The Licensr Mission</span>
+                    <span className="text-red-500 font-mono text-sm uppercase tracking-widest mb-4 block">The Nozris Mission</span>
                     <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter uppercase">
                         Code Is <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-600">Power</span>.
                     </h1>
@@ -74,7 +74,7 @@ export default function ManifestoPage() {
                 <div className="max-w-3xl mx-auto">
                     <h2 className="text-3xl font-bold text-white mb-8">Join the Resistance Against Piracy.</h2>
                     <p className="text-gray-400 mb-10 text-lg">
-                        Licensr isn't just a tool; it's a movement to reclaim the value of code.
+                        Nozris isn't just a tool; it's a movement to reclaim the value of code.
                     </p>
                     <div className="text-sm font-mono text-gray-600">
                 // END TRANSMISSION

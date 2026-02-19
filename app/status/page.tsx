@@ -10,7 +10,7 @@ export default function StatusPage() {
                 <div className="flex items-center justify-between mb-12 border-b border-gray-800 pb-8">
                     <div>
                         <h1 className="text-4xl font-black mb-2">System Status</h1>
-                        <p className="text-gray-400">Real-time performance monitoring of the Licensr Network.</p>
+                        <p className="text-gray-400">Real-time performance monitoring of the Nozris Network.</p>
                     </div>
                     <div className="flex items-center gap-3 bg-green-500/10 border border-green-500/20 px-4 py-2 rounded-lg">
                         <span className="relative flex h-3 w-3">

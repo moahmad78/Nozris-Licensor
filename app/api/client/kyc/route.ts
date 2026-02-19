@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 
@@ -71,3 +71,4 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Failed to submit KYC' }, { status: 500 });
     }
 }
+

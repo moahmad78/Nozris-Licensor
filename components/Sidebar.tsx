@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-    Activity, ShieldAlert, Key, Zap, User, Lock, LogOut, Scale
+    Activity, ShieldAlert, Key, Zap, User, Lock, LogOut, Scale, Briefcase
 } from 'lucide-react';
 
 export function Sidebar() {
@@ -22,13 +22,14 @@ export function Sidebar() {
                     </div>
                     <div>
                         <p className="text-[10px] font-black uppercase text-gray-500">Master Admin</p>
-                        <p className="text-sm font-black italic">Licensr Admin</p>
+                        <p className="text-sm font-black italic">Nozris Admin</p>
                     </div>
                 </Link>
 
                 <nav className="flex-1 space-y-2">
                     {[
-                        { label: 'Intelligence', icon: Activity, href: '/admin/dashboard' },
+                        { label: 'Security War-Room', icon: Activity, href: '/admin/dashboard' },
+                        { label: 'Business Ops', icon: Briefcase, href: '/dashboard' },
                         { label: 'Guard Post', icon: ShieldAlert, href: '/admin/security' },
                         { label: 'License Hub', icon: Key, href: '/admin/licenses' },
                         { label: 'Legal Manager', icon: Scale, href: '/admin/legal' },
@@ -53,5 +54,6 @@ export function Sidebar() {
                     </button>
                 </div>
             </div>
-            );
+        </>
+    );
 }

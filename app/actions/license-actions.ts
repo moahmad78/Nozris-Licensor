@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 
 export async function updateLicenseDevSettings(licenseId: string, stagingDomain: string, enableDevMode: boolean) {
@@ -37,7 +37,30 @@ export async function getLicenseDetails(id: string) {
 export async function getLicenseStats() {
     const total = await prisma.license.count();
     const active = await prisma.license.count({ where: { status: 'ACTIVE' } });
-    return { total, active };
+
+    const thirtyDaysFromNow = new Date();
+    thirtyDaysFromNow.setDate(thirtyDaysFromNow.getDate() + 30);
+
+    const expiredTodayCount = await prisma.license.count({
+        where: {
+            expiresAt: {
+                gte: new Date(new Date().setHours(0, 0, 0, 0)),
+                lte: new Date(new Date().setHours(23, 59, 59, 999))
+            }
+        }
+    });
+
+    const expiringSoon = await prisma.license.count({
+        where: {
+            expiresAt: {
+                lte: thirtyDaysFromNow,
+                gte: new Date()
+            },
+            status: 'ACTIVE'
+        }
+    });
+
+    return { total, active, expiringSoon, expiredTodayCount };
 }
 
 // Added missing exports
@@ -95,3 +118,4 @@ export async function revokeLicense(id: string) {
         return { success: false, error: 'Failed to revoke license' };
     }
 }
+

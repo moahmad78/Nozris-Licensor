@@ -54,7 +54,7 @@ export default function ProxyShieldDoc() {
                             <Network className="text-indigo-500" /> The Global Blacklist
                         </h2>
                         <p className="text-gray-400 text-lg mb-8 max-w-4xl">
-                            Licensr operates on a Hive-Mind architecture. We maintain a real-time database of over <span className="text-white font-bold">45 Million</span> known malicious IPs, compromised IoT devices, and Botnet command nodes.
+                            Nozris operates on a Hive-Mind architecture. We maintain a real-time database of over <span className="text-white font-bold">45 Million</span> known malicious IPs, compromised IoT devices, and Botnet command nodes.
                         </p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -80,7 +80,7 @@ export default function ProxyShieldDoc() {
                 {/* Integration Code */}
                 <section>
                     <h2 className="text-2xl font-bold mb-6">Configuration</h2>
-                    <p className="text-gray-400 mb-6">Enable Strict Mode in your `licensr.config.ts` to reject all anonymized traffic.</p>
+                    <p className="text-gray-400 mb-6">Enable Strict Mode in your `nozris.config.ts` to reject all anonymized traffic.</p>
                     <div className="bg-gray-950 border border-gray-800 p-6 rounded-2xl font-mono text-sm text-gray-300">
                         <span className="text-purple-400">export const</span> config = &#123;<br />
                         &nbsp;&nbsp;firewall: &#123;<br />

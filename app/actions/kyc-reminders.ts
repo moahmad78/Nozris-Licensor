@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { sendWhatsAppMessage } from '@/lib/whatsapp';
 
 export async function processKYCReminders() {
@@ -73,3 +73,4 @@ Please upload your Aadhar Card and Address details in the Client Portal to activ
         return { success: false, error: 'Failed to process reminders' };
     }
 }
+

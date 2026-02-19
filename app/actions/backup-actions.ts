@@ -11,7 +11,7 @@ export async function manualBackupAction() {
         return {
             success: true,
             data: encryptedData,
-            filename: `licensr_backup_${new Date().toISOString().split('T')[0]}.vmt`
+            filename: `nozris_backup_${new Date().toISOString().split('T')[0]}.vmt`
         };
     } catch (error) {
         return { success: false, error: "Backup generation failed" };

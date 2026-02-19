@@ -49,9 +49,9 @@ export default function PricingPage() {
                             </li>
                         </ul>
 
-                        <button className="w-full py-4 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-xl transition-all border border-gray-700">
+                        <Link href="/register" className="block w-full text-center py-4 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-xl transition-all border border-gray-700">
                             Start Building
-                        </button>
+                        </Link>
                     </div>
 
                     {/* Enterprise Plan */}
@@ -93,9 +93,9 @@ export default function PricingPage() {
                             </li>
                         </ul>
 
-                        <button className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-blue-600/20">
+                        <Link href="/register" className="block w-full text-center py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-blue-600/20">
                             Get Full Protection
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

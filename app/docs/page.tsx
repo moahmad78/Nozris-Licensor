@@ -11,11 +11,11 @@ export default function DocsPage() {
                 <header className="border-b border-gray-800 pb-10">
                     <div className="text-blue-600 font-mono text-sm mb-4">CONFIDENTIAL // PUBLIC RELEASE 2.0</div>
                     <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-white mb-6">
-                        LICENSR <span className="text-blue-600">PROTOCOL</span>
+                        NOZRIS <span className="text-blue-600">PROTOCOL</span>
                     </h1>
                     <p className="text-xl text-gray-400 font-light leading-relaxed max-w-2xl">
                         The definitive standard for autonomous software protection.
-                        Licensr is a <strong>Managed Security Service</strong> that combines AI-led detection with human-led enforcement.
+                        Nozris is a <strong>Managed Security Service</strong> that combines AI-led detection with human-led enforcement.
                     </p>
                 </header>
 
@@ -27,7 +27,7 @@ export default function DocsPage() {
                     </h3>
 
                     <p className="text-gray-400 text-lg">
-                        Licensr treats different languages with specialized enforcement logic. We don't believe in a "one size fits all" approach to security.
+                        Nozris treats different languages with specialized enforcement logic. We don't believe in a "one size fits all" approach to security.
                     </p>
 
                     <div className="space-y-6">
@@ -72,7 +72,7 @@ export default function DocsPage() {
                             <Shield className="w-6 h-6 text-blue-500" /> Scope of Protection
                         </h2>
                         <p className="text-gray-300 leading-relaxed text-lg">
-                            Licensr provides military-grade security for <strong>Websites, Mobile Apps, CRM Systems, Desktop Software, Games, and CMS Platforms</strong>.
+                            Nozris provides military-grade security for <strong>Websites, Mobile Apps, CRM Systems, Desktop Software, Games, and CMS Platforms</strong>.
                             Our integrity protocols are non-negotiable and autonomous. Attempted tampering triggers immediate, irreversible countermeasures.
                         </p>
                     </div>

@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { pusherServer } from '@/lib/pusher';
 import { z } from 'zod';
 
@@ -171,3 +171,4 @@ export async function checkIPStatus(ip: string) {
         attempts: record?.attempts || 0
     };
 }
+

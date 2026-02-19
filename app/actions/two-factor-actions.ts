@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 
 export async function toggle2FA(userId: string, enabled: boolean) {
@@ -27,3 +27,4 @@ export async function getSecuritySettings(userId: string) {
         return null;
     }
 }
+

@@ -13,7 +13,7 @@ export default function WatchdogDocs() {
                         <div className="p-2 bg-red-600 rounded-lg group-hover:bg-red-500 transition-colors">
                             <Shield size={24} className="text-white" />
                         </div>
-                        <span className="text-xl font-bold tracking-tight">Licensr<span className="text-red-500">.watchdog</span></span>
+                        <span className="text-xl font-bold tracking-tight">Nozris<span className="text-red-500">.watchdog</span></span>
                     </Link>
                     <nav className="hidden md:flex gap-6 text-sm font-medium text-gray-400">
                         <Link href="/docs" className="hover:text-white transition-colors">Documentation</Link>
@@ -33,7 +33,7 @@ export default function WatchdogDocs() {
                     </h1>
                     <p className="text-2xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
                         The world's first <span className="text-white font-medium">Self-Defending Code</span> protocol.
-                        Licensr doesn't just watch for threats; it neutralizes them at the source.
+                        Nozris doesn't just watch for threats; it neutralizes them at the source.
                     </p>
                 </section>
 
@@ -89,7 +89,7 @@ export default function WatchdogDocs() {
                         <div className="bg-black border border-gray-800 rounded-xl p-6 mb-8 overflow-x-auto">
                             <div className="flex items-center gap-3 mb-4 text-xs font-mono">
                                 <span className="bg-red-600 px-2 py-1 rounded text-white">POST</span>
-                                <span className="text-gray-500 text-sm">https://api.licensr.com/v1/emergency/lock</span>
+                                <span className="text-gray-500 text-sm">https://api.nozris.com/v1/emergency/lock</span>
                             </div>
                             <pre className="text-green-400 text-sm">
                                 {`{
@@ -157,7 +157,7 @@ export default function WatchdogDocs() {
                     <h2 className="text-3xl font-black mb-8">Ready to secure your empire?</h2>
                     <div className="flex flex-col sm:flex-row justify-center gap-6">
                         <Link href="/dashboard" className="px-10 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-red-600/20">
-                            Get Licensr Now
+                            Get Nozris Now
                         </Link>
                         <Link href="/docs" className="px-10 py-4 bg-gray-900 hover:bg-gray-800 text-gray-300 font-bold rounded-xl transition-all border border-gray-800">
                             Return to Docs

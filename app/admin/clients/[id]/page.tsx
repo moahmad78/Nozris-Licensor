@@ -1,51 +1,21 @@
-'use client';
-
-import React, { useState } from 'react';
-import { ShieldCheck, ShieldAlert, Activity, RefreshCw, Server, AlertTriangle, FileCode } from 'lucide-react';
+import { prisma } from '@/lib/db';
+import { ShieldCheck, ShieldAlert, Activity, RefreshCw, Server, AlertTriangle, FileCode, CheckCircle, XCircle, Clock } from 'lucide-react';
 import { toast } from 'sonner';
+import { verifyKYCDocument } from '@/app/actions/admin-kyc';
+// ClientDetailsClient import removed as logical is handled via Server Actions
 
-export default function ClientDetailsPage({ params }: { params: { id: string } }) {
-    const [repairing, setRepairing] = useState(false);
+// Server Component
+export default async function ClientDetailsPage({ params }: { params: { id: string } }) {
+    const client = await prisma.client.findUnique({
+        where: { id: params.id },
+        include: { kycDocuments: true, tamperEvents: true } // Fetch documents
+    });
 
-    // Mock Data (In real app, fetch via server component or useEffect)
-    const client = {
-        id: params.id,
-        name: "Acme Corp",
-        domain: "acme.com",
-        licenseKey: "LICENSE-XYZ-123",
-        status: "CORRUPTED", // Simulated corrupted state
-        health: "CRITICAL",
-        lastBackup: "2026-02-05 14:00"
-    };
+    if (!client) return <div>Client Not Found</div>;
 
-    const handleRepair = async () => {
-        if (!confirm("Confirm System Restore? This will overwrite current live files with the Clean Snapshot.")) return;
-
-        setRepairing(true);
-        try {
-            const response = await fetch('/api/license/repair', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    licenseKey: client.licenseKey,
-                    adminAuthToken: "LICENSR-MASTER-KEY"
-                })
-            });
-
-            if (response.ok) {
-                toast.success("Recovery Signal Broadcasted. System Restoring...");
-                // Optimistic UI update
-                client.status = "SECURE";
-                client.health = "HEALTHY";
-            } else {
-                toast.error("Repair Failed");
-            }
-        } catch (error) {
-            toast.error("Network Error");
-        } finally {
-            setRepairing(false);
-        }
-    };
+    const license = await prisma.license.findFirst({
+        where: { clientEmail: client.email }
+    });
 
     return (
         <div className="p-8 space-y-8 bg-gray-50 min-h-screen">
@@ -55,66 +25,96 @@ export default function ClientDetailsPage({ params }: { params: { id: string } }
                     <p className="text-gray-500 font-bold uppercase text-xs tracking-widest">{client.domain}</p>
                 </div>
                 <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200">
-                    <span className="text-xs font-bold text-gray-400 block">LICENSE KEY</span>
-                    <span className="font-mono text-sm font-bold text-black">{client.licenseKey}</span>
+                    <span className="text-xs font-bold text-gray-400 block">STATUS</span>
+                    <span className={`font-mono text-sm font-bold ${client.kycStatus === 'VERIFIED' ? 'text-green-600' : 'text-orange-500'}`}>
+                        {client.kycStatus}
+                    </span>
                 </div>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                {/* System Health Card */}
-                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm md:col-span-2 flex flex-col justify-between relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-6 opacity-5">
-                        <Activity className="w-32 h-32 text-red-500 animate-pulse" />
-                    </div>
+                {/* KYC REVIEW SECTION */}
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm md:col-span-2">
+                    <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                        <ShieldCheck className="w-5 h-5 text-emerald-600" /> Identity Verification
+                    </h3>
 
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
-                            <Server className="w-5 h-5 text-blue-600" /> System Health
-                        </h3>
-                        {client.health === 'CRITICAL' ? (
-                            <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-4">
-                                <AlertTriangle className="w-3 h-3" /> Integrity Compromised
-                            </div>
-                        ) : (
-                            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-4">
-                                <ShieldCheck className="w-3 h-3" /> System Nominal
-                            </div>
-                        )}
-                        <p className="text-gray-500 text-sm max-w-md">
-                            Automatic diagnostics detected unauthorized file modification signature.
-                            The system is currently effectively disabled (God-Mode Lock).
-                        </p>
-                    </div>
+                    {client.kycDocuments.length === 0 ? (
+                        <div className="text-center p-8 bg-gray-50 rounded-xl border border-dashed border-gray-300">
+                            <p className="text-gray-400 font-bold">No Documents Uploaded</p>
+                        </div>
+                    ) : (
+                        <div className="space-y-4">
+                            {client.kycDocuments.map((doc: any) => (
+                                <div key={doc.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-200">
+                                    <div className="flex items-center gap-4">
+                                        <div className="p-3 bg-white rounded-lg border border-gray-100 shadow-sm">
+                                            <FileCode className="text-blue-500" />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold text-gray-900">{doc.type}</p>
+                                            <p className="text-xs text-gray-500 flex items-center gap-1">
+                                                Uploaded: {new Date(doc.uploadedAt).toLocaleDateString()}
+                                            </p>
 
-                    <div className="mt-8 flex gap-4">
-                        <button
-                            onClick={handleRepair}
-                            disabled={repairing}
-                            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-blue-200 transition-all flex items-center gap-2 uppercase tracking-widest text-xs"
-                        >
-                            <ShieldCheck className={`w-4 h-4 ${repairing ? 'animate-spin' : ''}`} />
-                            {repairing ? 'Restoring...' : 'REPAIR & RESTORE SITE'}
-                        </button>
-                    </div>
+                                            {doc.status === 'APPROVED' && <span className="text-[10px] font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded uppercase mt-1 inline-block">Verified</span>}
+                                            {doc.status === 'REJECTED' && <span className="text-[10px] font-bold text-red-600 bg-red-100 px-2 py-0.5 rounded uppercase mt-1 inline-block">Rejected</span>}
+                                            {doc.status === 'PENDING' && <span className="text-[10px] font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded uppercase mt-1 inline-block">Pending Review</span>}
+                                        </div>
+                                    </div>
+
+                                    {doc.status === 'PENDING' && (
+                                        <div className="flex gap-2">
+                                            <form action={async () => {
+                                                'use server';
+                                                await verifyKYCDocument(doc.id, 'APPROVED');
+                                            }}>
+                                                <button className="p-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors" title="Approve">
+                                                    <CheckCircle size={18} />
+                                                </button>
+                                            </form>
+
+                                            <form action={async () => {
+                                                'use server';
+                                                await verifyKYCDocument(doc.id, 'REJECTED', 'Document Unclear/Invalid');
+                                            }}>
+                                                <button className="p-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors" title="Reject">
+                                                    <XCircle size={18} />
+                                                </button>
+                                            </form>
+                                        </div>
+                                    )}
+
+                                    <a href={doc.documentUrl} target="_blank" className="text-xs font-bold text-blue-600 hover:underline">
+                                        View File
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
-
-                {/* Quick Actions / Snapshot Info */}
+                w
+                {/* Quick Details */}
                 <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4">
-                    <div className="flex items-center gap-3 mb-2">
-                        <FileCode className="w-5 h-5 text-gray-400" />
-                        <h3 className="font-bold text-gray-800">Clean Snapshot</h3>
-                    </div>
-                    <div className="bg-gray-100 rounded-lg p-3 text-xs font-mono text-gray-600 break-all">
-                        HASH: sha256-834j...92x
-                    </div>
-                    <p className="text-xs text-gray-400">
-                        Last Clean Backup: <span className="font-bold text-gray-600">{client.lastBackup}</span>
-                    </p>
-                    <div className="pt-4 border-t border-gray-100">
-                        <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2 rounded-lg text-xs uppercase transition-colors">
-                            View Forensics
-                        </button>
+                    <h3 className="font-bold text-gray-800 mb-4">Client Profile</h3>
+                    <div className="space-y-3 text-sm">
+                        <div className="flex justify-between border-b pb-2">
+                            <span className="text-gray-500">Name</span>
+                            <span className="font-bold">{client.name}</span>
+                        </div>
+                        <div className="flex justify-between border-b pb-2">
+                            <span className="text-gray-500">Email</span>
+                            <span className="font-bold">{client.email}</span>
+                        </div>
+                        <div className="flex justify-between border-b pb-2">
+                            <span className="text-gray-500">WhatsApp</span>
+                            <span className="font-bold">{client.whatsapp}</span>
+                        </div>
+                        <div className="flex justify-between border-b pb-2">
+                            <span className="text-gray-500">Address</span>
+                            <span className="font-bold max-w-[150px] truncate text-right">{client.address || 'N/A'}</span>
+                        </div>
                     </div>
                 </div>
 

@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { pusherServer } from '@/lib/pusher';
 
 export async function getAdminDashboardSummary() {
@@ -66,3 +66,4 @@ export async function triggerAdminAlert(event: string, data: any) {
         return { error: "Alert bypass failure" };
     }
 }
+

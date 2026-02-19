@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { pusherServer } from '@/lib/pusher';
 
 export async function POST(req: NextRequest) {
@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
         const { licenseKey, adminAuthToken } = await req.json();
 
         // 1. Verify Admin (Simple check for demo, use session in prod)
-        if (adminAuthToken !== process.env.ADMIN_SECRET_KEY && adminAuthToken !== "LICENSR-MASTER-KEY") {
+        if (adminAuthToken !== process.env.ADMIN_SECRET_KEY && adminAuthToken !== "NOZRIS-MASTER-KEY") {
             return NextResponse.json({ error: 'Unauthorized: Invalid Admin Token' }, { status: 401 });
         }
 
@@ -45,3 +45,4 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Release Failed' }, { status: 500 });
     }
 }
+

@@ -30,7 +30,7 @@ export default function EmergencyLockProtocol() {
                         The Mesh Sync Advantage
                     </h2>
                     <p className="text-gray-400 leading-relaxed">
-                        Unlike traditional license checks that wait for an API call, Licensr's Emergency Switch uses a <strong>Gossip Protocol</strong>. Within 140ms of triggering the lock from your dashboard, every active user session globally is terminated and the file system enters "Worm Mode" (Write Once, Read Many).
+                        Unlike traditional license checks that wait for an API call, Nozris Emergency Switch uses a <strong>Gossip Protocol</strong>. Within 140ms of triggering the lock from your dashboard, every active user session globally is terminated and the file system enters "Worm Mode" (Write Once, Read Many).
                     </p>
                 </section>
 
@@ -56,10 +56,10 @@ export default function EmergencyLockProtocol() {
                                 <h4 className="text-xl font-black text-red-500">SYSTEM LOCKDOWN INITIATED</h4>
                             </div>
                             <p className="font-mono text-xs text-red-400/80 mb-6 leading-relaxed">
-                                > SIGNAL_RECIEVED: EMERGENCY_ALPHA_7<br />
-                                > VALIDATING SOURCE: [LICENSR_CORE_MESH]<br />
-                                > STATUS: 100% NODES SYNCED<br />
-                                > ACTION: ATOMIC_FS_LOCK_EXECUTED
+                                &gt; SIGNAL_RECIEVED: EMERGENCY_ALPHA_7<br />
+                                &gt; VALIDATING SOURCE: [NOZRIS_CORE_MESH]<br />
+                                &gt; STATUS: 100% NODES SYNCED<br />
+                                &gt; ACTION: ATOMIC_FS_LOCK_EXECUTED
                             </p>
                             <button
                                 onClick={() => setIsSimulating(false)}

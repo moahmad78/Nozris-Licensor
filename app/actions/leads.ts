@@ -1,21 +1,52 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { sendEmail } from '@/lib/email';
 import { sendWhatsAppMessage } from '@/lib/whatsapp';
 import { revalidatePath } from 'next/cache';
 
 export async function submitLead(formData: FormData) {
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const whatsapp = formData.get('whatsapp') as string;
-    const domain = formData.get('domain') as string;
-
-    if (!name || !email || !whatsapp || !domain) {
-        return { error: 'All fields are required.' };
-    }
-
     try {
+        const name = formData.get('name') as string;
+        const email = formData.get('email') as string;
+        const whatsapp = formData.get('whatsapp') as string;
+        const domain = formData.get('domain') as string;
+
+        if (!name || !email || !whatsapp || !domain) {
+            return { error: 'All fields are required.' };
+        }
+
+        // ── Duplicate Check: Domain (across Clients, Licenses, AND Leads) ──
+        const domainInClient = await prisma.client.findFirst({
+            where: { domain: { equals: domain, mode: 'insensitive' } }
+        });
+        const domainInLicense = await prisma.license.findFirst({
+            where: { domain: { contains: domain, mode: 'insensitive' }, deletedAt: null }
+        });
+        const domainInLead = await prisma.lead.findFirst({
+            where: { domain: { equals: domain, mode: 'insensitive' }, status: { not: 'REJECTED' } }
+        });
+
+        if (domainInClient || domainInLicense || domainInLead) {
+            return { error: 'This domain is already under our protection protocol.', code: 409 };
+        }
+
+        // ── Duplicate Check: Email (across Clients AND Leads) ──
+        const emailInClient = await prisma.client.findUnique({
+            where: { email }
+        });
+        const emailInLead = await prisma.lead.findFirst({
+            where: { email: { equals: email, mode: 'insensitive' }, status: { not: 'REJECTED' } }
+        });
+
+        if (emailInClient) {
+            return { error: 'This email is already registered with us. Please login instead.', code: 409 };
+        }
+        if (emailInLead) {
+            return { error: 'This email is already registered with us.', code: 409 };
+        }
+
+        // ── Create Lead ──
         await prisma.lead.create({
             data: { name, email, whatsapp, domain }
         });
@@ -29,12 +60,15 @@ export async function submitLead(formData: FormData) {
 
 Buddy, ek naya client aaya hai! Inse contact karke Aadhar Card mangiye aur verification process shuru kijiye.`;
 
-        // We don't await this to ensure fast response to client
         sendWhatsAppMessage('919264920211', message).catch(err => console.error("Background WA Error:", err));
 
-        return { success: true };
-    } catch (error) {
-        return { error: 'Failed to submit application.' };
+        return {
+            success: true,
+            message: 'Shield Protocol Initialized! Our team will verify your details and contact you within 3 hours.'
+        };
+    } catch (error: any) {
+        console.error("Submit Lead Error:", error);
+        return { error: `Server Error: ${error.message || 'Database connection failed'}` };
     }
 }
 
@@ -170,3 +204,4 @@ export async function rejectLead(leadId: string) {
     revalidatePath('/dashboard/leads');
     return { success: true };
 }
+

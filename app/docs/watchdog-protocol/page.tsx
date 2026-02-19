@@ -16,7 +16,7 @@ export default function WatchdogProtocol() {
                         Decentralized <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-600">Watchdog</span>
                     </h1>
                     <p className="text-2xl text-gray-400 font-light leading-relaxed max-w-3xl">
-                        Beyond simple blocking. Licensr's Watchdog is an autonomous enforcement layer that executes hardware-level locking and self-destruct protocols on detected tampering.
+                        Beyond simple blocking. Nozris's Watchdog is an autonomous enforcement layer that executes hardware-level locking and self-destruct protocols on detected tampering.
                     </p>
                 </header>
 
@@ -118,7 +118,7 @@ export default function WatchdogProtocol() {
                         The Admin Advantage
                     </h2>
                     <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
-                        While visitors can view the technology, as a Licensr client, you gain access to your private **Security Command Center**.
+                        While visitors can view the technology, as a Nozris client, you gain access to your private **Security Command Center**.
                     </p>
                     <div className="grid md:grid-cols-2 gap-6 mt-6">
                         <div className="flex gap-4 items-start">
@@ -145,7 +145,7 @@ export default function WatchdogProtocol() {
                         IT Act 2000 Forensic Logs
                     </h2>
                     <p className="text-lg text-gray-400 leading-relaxed">
-                        Licensr doesn't just block—it builds a case. Every attack log is cryptographically signed and formatted to meet the evidentiary standards of the Indian IT Act 2000.
+                        Nozris doesn't just block—it builds a case. Every attack log is cryptographically signed and formatted to meet the evidentiary standards of the Indian IT Act 2000.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="p-6 bg-gray-900/40 rounded-2xl border border-gray-800">

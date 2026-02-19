@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 
 export async function GET(req: Request) {
     // Validate Cron Secret if needed (skip for now as requested "Atomic Action")
@@ -33,3 +33,4 @@ export async function GET(req: Request) {
         return NextResponse.json({ success: false, error: String(error) }, { status: 500 });
     }
 }
+

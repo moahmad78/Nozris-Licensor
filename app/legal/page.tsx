@@ -14,7 +14,7 @@ export default function LegalPage() {
                         Back to Docs
                     </Link>
                     <div className="font-black text-xl tracking-tighter flex items-center gap-2">
-                        Licensr. <span className="text-red-600 text-[10px] uppercase tracking-widest bg-red-600/10 px-2 py-0.5 rounded border border-red-600/20">Legal Dept.</span>
+                        Nozris. <span className="text-red-600 text-[10px] uppercase tracking-widest bg-red-600/10 px-2 py-0.5 rounded border border-red-600/20">Legal Dept.</span>
                     </div>
                 </div>
             </nav>
@@ -29,7 +29,7 @@ export default function LegalPage() {
                         Terms of <span className="text-red-600 underline decoration-red-600/30 underline-offset-8">Enforcement</span>
                     </h1>
                     <p className="text-gray-500 text-lg font-medium max-w-2xl mx-auto">
-                        This is a legally binding document. By utilizing the Licensr System, you submit to the absolute authority and jurisdiction outlined below.
+                        This is a legally binding document. By utilizing the Nozris System, you submit to the absolute authority and jurisdiction outlined below.
                     </p>
                 </div>
 
@@ -42,7 +42,7 @@ export default function LegalPage() {
                         </div>
                         <div className="p-8 bg-white/5 rounded-3xl border border-white/5 space-y-4 text-gray-400 leading-relaxed font-medium">
                             <p>
-                                The "Licensr" platform, including all obfuscation algorithms, heartbeat monitors, and security sentinels, is the exclusive intellectual property of <strong className="text-white">Mohd Ahmad</strong>.
+                                The "Nozris" platform, including all obfuscation algorithms, heartbeat monitors, and security sentinels, is the exclusive intellectual property of <strong className="text-white">Mohd Ahmad</strong>.
                             </p>
                             <p>
                                 Any attempt to reverse-engineer, de-obfuscate, or bypass the security layers constitutes a criminal breach of digital property rights.
@@ -100,7 +100,7 @@ export default function LegalPage() {
                 {/* Closing */}
                 <div className="mt-32 pt-16 border-t border-white/5 text-center">
                     <p className="text-gray-700 text-[10px] font-black uppercase tracking-[0.5em]">
-                        Formalized by Mohd Ahmad | © {new Date().getFullYear()} Licensr. Enforcement
+                        Formalized by Mohd Ahmad | © {new Date().getFullYear()} Nozris. Enforcement
                     </p>
                 </div>
             </main>

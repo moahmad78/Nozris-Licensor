@@ -12,7 +12,7 @@ export default function TrustBadges() {
 
             <div className="flex items-center gap-3 bg-gray-900/50 px-5 py-3 rounded-full border border-gray-800 hover:border-blue-500/50 transition-colors cursor-default">
                 <Server className="w-5 h-5 text-blue-500" />
-                <span className="text-gray-300 font-medium text-sm">VPN Shield Active</span>
+                <span className="text-gray-300 font-medium text-sm">VPN Guard Active</span>
             </div>
 
             <div className="flex items-center gap-3 bg-gray-900/50 px-5 py-3 rounded-full border border-gray-800 hover:border-yellow-500/50 transition-colors cursor-default">

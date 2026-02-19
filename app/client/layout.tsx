@@ -1,6 +1,7 @@
 import { getClientLicenseDetails } from '@/app/actions/client-integration';
 import { getPaymentStatus } from '@/app/actions/payment-actions';
 import { redirect } from 'next/navigation';
+import { ClientSidebar } from '@/components/client/ClientSidebar';
 
 export default async function ClientLayout({
     children,
@@ -24,8 +25,16 @@ export default async function ClientLayout({
     }
 
     return (
-        <div className="min-h-screen bg-[#F0F2F5]">
-            {children}
+        <div className="min-h-screen bg-black text-white w-full">
+            {/* Sidebar for Desktop */}
+            <div className="hidden lg:block">
+                <ClientSidebar />
+            </div>
+
+            {/* Main Content Area */}
+            <div className="lg:ml-64 min-h-screen transition-all duration-300">
+                {children}
+            </div>
         </div>
     );
 }

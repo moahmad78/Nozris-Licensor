@@ -18,7 +18,7 @@ export default function VerificationPage({ params }: { params: { id: string } })
                 <div className="space-y-4">
                     <h1 className="text-3xl font-black text-white uppercase tracking-tight">Verified Secure</h1>
                     <p className="text-gray-400">
-                        The domain associated with this ID is currently protected by Licensr.
+                        The domain associated with this ID is currently protected by Nozris.
                     </p>
                 </div>
 
@@ -47,7 +47,7 @@ export default function VerificationPage({ params }: { params: { id: string } })
                 </div>
 
                 <Link href="/" className="block w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors">
-                    Get Licensr Protection
+                    Get Nozris Protection
                 </Link>
 
                 <p className="text-xs text-gray-600 uppercase tracking-widest">Trusted by 500+ Businesses Globally</p>

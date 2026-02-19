@@ -10,11 +10,11 @@ export async function sendAdminNotification(userEmail: string) {
     });
 
     const mailOptions = {
-        from: process.env.GMAIL_USER,
+        from: `"Nozris Security" <${process.env.GMAIL_USER}>`,
         to: process.env.GMAIL_USER, // Sending to admin (self)
-        subject: 'New User Registration Alert',
-        text: `A new user registered with email: ${userEmail}. Please check database to approve.`,
-        html: `<p>A new user registered with email: <strong>${userEmail}</strong>. Please check database to approve.</p>`,
+        subject: 'New User Registration Alert - Nozris',
+        text: `A new user registered with email: ${userEmail}. Please check Nozris database to approve.`,
+        html: `<p>A new user registered with email: <strong>${userEmail}</strong>. Please check Nozris database to approve.</p>`,
     };
     try {
         await transporter.sendMail(mailOptions);
@@ -35,7 +35,7 @@ export const sendEmail = async (to: string, subject: string, html: string, attac
 
     try {
         await transporter.sendMail({
-            from: process.env.GMAIL_USER,
+            from: `"Nozris Security" <${process.env.GMAIL_USER}>`,
             to,
             subject,
             html,

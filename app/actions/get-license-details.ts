@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 
 export async function getLicenseDetails(key: string) {
     if (!key || key.length < 5) return null;
@@ -33,3 +33,4 @@ export async function getLicenseDetails(key: string) {
         return null;
     }
 }
+

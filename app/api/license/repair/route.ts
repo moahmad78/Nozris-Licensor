@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
         const { licenseKey, adminAuthToken } = await req.json();
 
         // 1. Admin Verification
-        if (adminAuthToken !== process.env.ADMIN_SECRET_KEY && adminAuthToken !== "LICENSR-MASTER-KEY") {
+        if (adminAuthToken !== process.env.ADMIN_SECRET_KEY && adminAuthToken !== "NOZRIS-MASTER-KEY") {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 

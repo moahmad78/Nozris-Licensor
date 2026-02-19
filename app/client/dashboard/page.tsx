@@ -1,189 +1,227 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
-    Ticket, Key, ShieldAlert, MessageSquare, Inbox, FileText, ArrowUpRight, BarChart3, Clock, Sparkles, Code2, Download, Scale, Share2
+    ShieldCheck,
+    Lock,
+    Activity,
+    Users,
+    ChevronRight,
+    Download,
+    Cpu,
+    Zap,
+    AlertOctagon, // For Panic Button
+    Settings
 } from 'lucide-react';
-import { format, differenceInDays } from 'date-fns';
 import { toast } from 'sonner';
-import { getLicenseDetails } from '@/app/actions/license-actions';
-import { getPaymentStatus } from '@/app/actions/payment-actions';
-import IntegrityManager from '@/components/IntegrityManager';
-import SecureImage from '@/components/SecureImage';
-import { TamperLogTable } from '@/components/security/tamper-log-table';
+import DevToolsGuard from '@/components/security/DevToolsGuard';
+import { NoticeWidget } from '@/components/client/NoticeWidget';
+import { SupportWidget } from '@/components/client/SupportWidget';
+import { SystemVault } from '@/components/client/SystemVault';
+import { approveDeveloper } from '@/app/actions/dev-management';
+import { globalSiteLock } from '@/app/actions/lockdown'; // Action
+import LiveThreatMap from '@/components/client/LiveThreatMap'; // New
+import TrafficChart from '@/components/client/TrafficChart'; // New
+import GeofenceControl from '@/components/client/GeofenceControl'; // New
+import SubscriptionCard from '@/components/client/SubscriptionCard'; // New
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-
 export default function ClientDashboard() {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [licenseData, setLicenseData] = useState<any>(null);
+    const [securityScore, setSecurityScore] = useState(100);
     const router = useRouter();
 
-    // Mock data for analytics
-    const attacksBlocked = 124;
-    const uptime = "99.99%";
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { getClientLicenseDetails } = await import('@/app/actions/client-integration');
+                const data = await getClientLicenseDetails();
+                if (data) {
+                    setLicenseData(data);
+                }
+            } catch (e) {
+                console.error("Failed to fetch license data", e);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
 
-    // Mock data for empty state demonstration
-    // ideally, these would come from the getLicenseDetails action
-    const licenses: any[] = [];
-    const tickets: any[] = [];
-    // Mock user details for certificate generation
-    const mockUser = {
-        name: "Valued Partner",
-        domain: "example.com",
-        verificationCode: "xxxx-xxxx-xxxx"
-    };
+    const handlePanicButton = async () => {
+        const confirm = window.confirm("⚠ EXTREME WARNING ⚠\n\nThis will instantly LOCK DOWN your entire website.\nVisitors will see a Security Entry Page.\nDatabase connections will be severed.\n\nAre you sure you want to deploy the KILL SWITCH?");
+        if (confirm) {
+            if (!licenseData?.key) return toast.error("License Key Missing");
 
+            toast.loading("DEPLOYING GLOBAL LOCKDOWN...");
+            const res = await globalSiteLock(licenseData.key);
 
-    const handleDownloadCertificate = async () => {
-        setLoading(true);
-        try {
-            const response = await fetch('/api/generate-certificate', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: mockUser.name,
-                    domain: mockUser.domain,
-                    date: new Date().toLocaleDateString(),
-                    verificationCode: mockUser.verificationCode // In real app, get from licence data
-                })
-            });
-
-            if (!response.ok) throw new Error('Generation failed');
-
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Certificate-${mockUser.domain}.svg`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            toast.success("Certificate Downloaded!");
-        } catch (error) {
-            toast.error("Failed to download certificate.");
-        } finally {
-            setLoading(false);
+            if (res.success) {
+                toast.dismiss();
+                toast.error("⛔ SITE LOCKED DOWN ⛔", { duration: 10000 });
+                // Force reload or redirect to show lock state
+                window.location.reload();
+            } else {
+                toast.dismiss();
+                toast.error("Lockdown Failed");
+            }
         }
     };
 
-    const handleShareTrustLink = () => {
-        const link = `https://licensr.in/verify/${mockUser.verificationCode}`;
-        navigator.clipboard.writeText(link);
-        toast.success("Trust Link Copied to Clipboard!");
+    const handleApproveDev = async (email: string) => {
+        if (!licenseData?.key) return;
+        toast.loading("Processing Approval & Auto-Backup...");
+        const res = await approveDeveloper(email, licenseData.key);
+        if (res.success) {
+            toast.dismiss();
+            toast.success(res.message);
+        } else {
+            toast.dismiss();
+            toast.error(res.message);
+        }
     };
 
     return (
-        <div className="max-w-7xl mx-auto p-6 md:p-12 space-y-12 animate-in fade-in duration-700">
-            {/* Header / Primary Actions */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-                <div className="space-y-2">
-                    <h1 className="text-5xl font-[1000] tracking-tighter uppercase italic leading-none">Your <span className="text-gray-300">Vault</span></h1>
-                    <p className="text-xs font-black text-gray-400 uppercase tracking-widest">Active License Guardianship</p>
+        <div className="min-h-screen bg-[#f8fafc] text-slate-800 p-6 md:p-10 space-y-8 animate-in fade-in duration-500 relative">
+            <DevToolsGuard />
+
+            {/* Header / Status Bar */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <div className="flex items-center gap-2 mb-1">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse box-content border-4 border-emerald-100"></span>
+                        <p className="text-xs font-bold text-emerald-600 uppercase tracking-widest">Neural Shield Active</p>
+                    </div>
+                    <h1 className="text-3xl font-black text-slate-900 tracking-tight">Command Center</h1>
+                    <p className="text-sm font-mono text-slate-500">
+                        LICENSE: <span className="font-bold text-slate-800">{licenseData?.key || '...'}</span>
+                    </p>
                 </div>
-
-                <div className="flex flex-wrap gap-4 w-full md:w-auto">
-                    {/* NEW ACTIONS */}
+                <div className="flex items-center gap-4">
                     <button
-                        onClick={handleDownloadCertificate}
-                        disabled={loading}
-                        className="flex-1 md:flex-none bg-blue-600 text-white px-6 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-blue-700 transition-all shadow-xl shadow-blue-200"
+                        onClick={handlePanicButton}
+                        className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-widest shadow-lg shadow-red-500/30 flex items-center gap-2 transition-all hover:scale-105 active:scale-95"
                     >
-                        <Download className="w-4 h-4" />
-                        Download Cert
+                        <AlertOctagon size={16} /> KILL SWITCH
                     </button>
-                    <Link href="/client/legal-doc" className="flex-1 md:flex-none bg-black text-white px-6 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-gray-800 transition-all shadow-xl shadow-black/10">
-                        <Scale className="w-4 h-4" />
-                        Legal Agreement
+                    <Link href="/client/dashboard/settings">
+                        <button className="bg-white p-3 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-900 transition-colors">
+                            <Settings size={20} />
+                        </button>
                     </Link>
-                    <button
-                        onClick={handleShareTrustLink}
-                        className="flex-1 md:flex-none bg-white border-2 border-green-500 text-green-600 px-6 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-green-50 transition-all"
-                    >
-                        <Share2 className="w-4 h-4" />
-                        Share Trust Link
-                    </button>
-
-                    {/* Original Links (Simplified/Icon only if needed, or kept) */}
-                    <Link href="/client/support" className="flex-1 md:flex-none bg-gray-100 text-black px-6 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-gray-200 transition-all">
-                        <MessageSquare className="w-4 h-4" />
-                        Support
-                    </Link>
-                </div>
-            </div>
-
-            {/* Image Protection Test */}
-            <div className="mb-4 flex gap-4">
-                <SecureImage
-                    src="/details_1.png" // Assuming this exists or any placeholder
-                    alt="Protected Asset"
-                    width={300}
-                    height={200}
-                    className="rounded-xl shadow-lg"
-                />
-            </div>
-
-            {/* Value Metrics Chart */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-black text-white p-8 rounded-[2.5rem] relative overflow-hidden group col-span-1 md:col-span-2">
-                    {/* Simplified Threat Card Content */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600 rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity" />
-                    <div className="relative z-10 flex justify-between items-end">
-                        <div className="space-y-2">
-                            <div className="flex items-center gap-2 text-blue-400">
-                                <ShieldAlert className="w-4 h-4" />
-                                <span className="text-[10px] font-black uppercase tracking-widest">Threats Neutralized</span>
-                            </div>
-                            <p className="text-5xl font-[1000] tracking-tighter italic">{attacksBlocked}</p>
-                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">In the last 30 days &bull; Zero Breaches</p>
-                        </div>
-                        <BarChart3 className="w-12 h-12 text-white/10" />
+                    <div className="bg-white px-5 py-3 rounded-xl shadow-sm border border-slate-200 flex flex-col items-center">
+                        <span className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Integrity</span>
+                        <span className="text-lg font-black text-emerald-600">{securityScore}%</span>
                     </div>
                 </div>
-
-                <div className="bg-white border border-gray-100 p-8 rounded-[2.5rem] flex flex-col justify-between space-y-6">
-                    {/* Replaced Dev Env card with Integrity Management (which includes Dev concept) */}
-                    <IntegrityManager
-                        initialEditMode={false}
-                        initialIsUnlimited={false}
-                        initialExpiry={null}
-                    />
-                </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                {/* Active Licenses Section */}
+            {/* MAIN SYSTEM VAULT */}
+            <section className="relative z-20">
+                <SystemVault licenseKey={licenseData?.key} />
+            </section>
+
+            {/* NEW: ANALYTICS GRID (Map + Chart) */}
+            <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="lg:col-span-2">
+                    <LiveThreatMap />
+                </div>
+                <div>
+                    <TrafficChart />
+                </div>
+            </section>
+
+            {/* NEW: SECURITY CONTROLS & SUBSCRIPTION */}
+            <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <GeofenceControl />
+                <SubscriptionCard licenseKey={licenseData?.key} />
+            </section>
+
+            {/* Existing: Dev Management & Notices */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Left Col: Passive Defenses */}
                 <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <Key className="w-5 h-5" />
-                            <h2 className="text-xl font-black uppercase tracking-tight">Active Licenses</h2>
+                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
+                        <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                            <Lock className="text-blue-500" size={20} /> Active Defenses
+                        </h3>
+                        <div className="space-y-3">
+                            {[
+                                { name: 'DevTools Trap', desc: 'Anti-Tamper', active: true },
+                                { name: 'IP Geo-Fencing', desc: 'Global Block', active: true },
+                                { name: 'Heuristic Scan', desc: 'AI Analysis', active: true },
+                            ].map((feature, i) => (
+                                <div key={i} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                    <div>
+                                        <p className="text-sm font-bold text-slate-800">{feature.name}</p>
+                                        <p className="text-[10px] text-slate-500">{feature.desc}</p>
+                                    </div>
+                                    <div className={`w-3 h-3 rounded-full ${feature.active ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)]' : 'bg-slate-300'}`}></div>
+                                </div>
+                            ))}
                         </div>
-                        <h2 className="text-xl font-black uppercase tracking-tight">Support History</h2>
+                    </div>
+                </div>
+
+                {/* Right Col: Devs & Notices */}
+                <div className="lg:col-span-2 space-y-6">
+                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
+                        <div className="flex items-center justify-between mb-6">
+                            <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                                <Users className="text-indigo-500" size={20} /> Developer Authorization
+                            </h3>
+                            <button className="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg hover:bg-indigo-100">
+                                + Invite
+                            </button>
+                        </div>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left text-sm">
+                                <thead>
+                                    <tr className="border-b border-slate-100 text-slate-400 text-[10px] uppercase tracking-widest">
+                                        <th className="pb-3 pl-2">Developer Email</th>
+                                        <th className="pb-3">Access Level</th>
+                                        <th className="pb-3">Status</th>
+                                        <th className="pb-3 text-right pr-2">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="text-slate-700">
+                                    <tr className="group hover:bg-slate-50 transition-colors">
+                                        <td className="py-3 pl-2 font-bold">frontend_dev@agency.com</td>
+                                        <td className="py-3">Full Access</td>
+                                        <td className="py-3"><span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded text-[10px] font-bold uppercase">Active</span></td>
+                                        <td className="py-3 text-right pr-2">
+                                            <button className="text-[10px] font-bold text-slate-400 hover:text-red-500">REVOKE</button>
+                                        </td>
+                                    </tr>
+                                    <tr className="group hover:bg-slate-50 transition-colors">
+                                        <td className="py-3 pl-2 font-bold">contractor_09@gmail.com</td>
+                                        <td className="py-3">Limited</td>
+                                        <td className="py-3"><span className="px-2 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-bold uppercase">Pending</span></td>
+                                        <td className="py-3 text-right pr-2">
+                                            <button
+                                                onClick={() => handleApproveDev('contractor_09@gmail.com')}
+                                                className="px-3 py-1 bg-slate-900 text-white text-[10px] font-bold rounded-lg hover:bg-blue-600 transition-colors shadow-sm"
+                                            >
+                                                APPROVE
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
-                    {tickets.length === 0 ? (
-                        <div className="bg-gray-50 border-2 border-dashed border-gray-200 rounded-[3rem] p-16 flex flex-col items-center text-center space-y-4">
-                            <div className="p-5 bg-white rounded-3xl shadow-sm">
-                                <ShieldAlert className="w-8 h-8 text-gray-300" />
-                            </div>
-                            <div className="space-y-1">
-                                <p className="text-sm font-black text-gray-900 uppercase">No Support Data</p>
-                                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Your ticket queue is completely clear.</p>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="space-y-4">
-                            {/* Ticket List (Placeholder) */}
-                        </div>
-                    )}
+                    <div className="bg-slate-900 p-1 rounded-3xl shadow-xl">
+                        <NoticeWidget />
+                    </div>
+
+                    <div className="h-[400px]">
+                        <SupportWidget />
+                    </div>
                 </div>
             </div>
-
-            {/* Forensics Row */}
-            <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100">
-                <TamperLogTable />
-            </div>
-        </div >
+        </div>
     );
 }

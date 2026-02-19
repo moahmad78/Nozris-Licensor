@@ -15,9 +15,9 @@ const CITIES = [
 ];
 
 const PROTECTED_NODES = [
-    { name: 'Licensr-NA', x: 22, y: 35 },
-    { name: 'Licensr-EU', x: 51, y: 28 },
-    { name: 'Licensr-APAC', x: 82, y: 40 }
+    { name: 'Nozris-NA', x: 22, y: 35 },
+    { name: 'Nozris-EU', x: 51, y: 28 },
+    { name: 'Nozris-APAC', x: 82, y: 40 }
 ];
 
 // --- DATA: REALISTIC BUSINESS DOMAINS (50+) ---
@@ -127,7 +127,7 @@ export default function GlobalThreatMap() {
                 <div className="absolute top-0 left-0 w-full p-6 z-20 pointer-events-none flex justify-between items-start bg-gradient-to-b from-black/90 to-transparent">
                     <div>
                         <h3 className="text-xl font-black text-white flex items-center gap-2 tracking-tight">
-                            <Shield className="text-blue-500 fill-blue-500/20" /> LICENSR DEFENSE
+                            <Shield className="text-blue-500 fill-blue-500/20" /> NOZRIS DEFENSE
                         </h3>
                         <div className="flex gap-4 mt-2 text-[10px] font-mono uppercase tracking-widest">
                             <span className="text-green-500 flex items-center gap-1"><Lock size={10} /> Secure</span>
@@ -256,7 +256,7 @@ export default function GlobalThreatMap() {
 
                 {/* Footer Status */}
                 <div className="p-2 text-[9px] text-center text-gray-600 border-t border-gray-900 bg-black">
-                    VERIFIED INTELLIGENCE • LICENSR NEURAL NET V4.0
+                    VERIFIED INTELLIGENCE • NOZRIS NEURAL NET V4.0
                 </div>
 
             </div>

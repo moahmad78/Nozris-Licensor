@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { startOfDay, endOfDay, parseISO } from 'date-fns';
 
 export async function GET(req: NextRequest) {
@@ -47,3 +47,4 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ error: "Failed to fetch unified report" }, { status: 500 });
     }
 }
+

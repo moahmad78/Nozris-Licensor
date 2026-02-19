@@ -1,10 +1,9 @@
 'use client';
 import Link from 'next/link';
-import { ShieldCheck, Menu, X, ArrowRight, Lock } from 'lucide-react';
+import { ShieldCheck, Menu, X, ArrowRight, Activity } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import LeadModal from './LeadModal';
-// Assuming utilities exist, if not I'll just use standard classes
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -33,9 +32,21 @@ export default function Navbar() {
         return null;
     }
 
+    const scrollToThreatMonitor = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setIsOpen(false);
+        const element = document.getElementById('threat-monitor');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            // Fallback if not on home page
+            router.push('/#threat-monitor');
+        }
+    };
+
     return (
         <nav className="absolute top-0 left-0 w-full z-50 border-b border-slate-800/10 bg-slate-950/80 backdrop-blur-md">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full px-6 md:px-12">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3 group">
@@ -43,15 +54,18 @@ export default function Navbar() {
                             <ShieldCheck className="w-6 h-6 text-blue-500" />
                         </div>
                         <span className="text-xl font-bold tracking-tight text-white group-hover:text-blue-500 transition-colors">
-                            Licensr
+                            Nozris
                         </span>
                     </Link>
 
                     {/* Desktop Menu - Documentation Style */}
                     <div className="hidden md:flex items-center gap-8">
-                        <Link href="/docs" className="text-slate-400 hover:text-white text-sm font-medium transition-colors">
-                            Documentation
-                        </Link>
+                        <button
+                            onClick={() => window.dispatchEvent(new CustomEvent('open-auth-modal', { detail: { view: 'login' } }))}
+                            className="text-slate-400 hover:text-white text-sm font-medium transition-colors"
+                        >
+                            Login
+                        </button>
                         <Link href="/pricing" className="text-slate-400 hover:text-white text-sm font-medium transition-colors">
                             Pricing
                         </Link>
@@ -59,13 +73,14 @@ export default function Navbar() {
                             Contact
                         </Link>
 
-                        {/* Desktop CTA */}
+                        {/* Desktop CTA - THREAT INTELLIGENCE */}
                         <div className="flex items-center gap-3 ml-4 pl-6 border-l border-slate-800">
                             <button
-                                onClick={() => setIsLeadModalOpen(true)}
-                                className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg text-sm font-bold transition-all shadow-md shadow-blue-500/10 flex items-center gap-2"
+                                onClick={scrollToThreatMonitor}
+                                className="bg-blue-600/90 hover:bg-blue-500 text-white px-5 py-2 rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(59,130,246,0.5)] flex items-center gap-2 border border-blue-400/50 animate-pulse"
                             >
-                                Secure Now <ArrowRight size={16} />
+                                <Activity size={16} className="animate-spin-slow" />
+                                Threat Intelligence
                             </button>
                         </div>
                     </div>
@@ -98,10 +113,11 @@ export default function Navbar() {
 
                         <div className="grid grid-cols-1 pt-4">
                             <button
-                                onClick={() => { setIsLeadModalOpen(true); setIsOpen(false); }}
-                                className="text-center bg-blue-600 hover:bg-blue-500 text-white block px-3 py-3 rounded-lg text-sm font-bold w-full"
+                                onClick={scrollToThreatMonitor}
+                                className="text-center bg-blue-600 hover:bg-blue-500 text-white flex justify-center items-center gap-2 px-3 py-3 rounded-lg text-sm font-bold w-full shadow-[0_0_15px_rgba(59,130,246,0.5)] animate-pulse"
                             >
-                                Secure Now
+                                <Activity size={16} />
+                                Threat Intelligence
                             </button>
                         </div>
                     </div>

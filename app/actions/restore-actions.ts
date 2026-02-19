@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { getClientLicenseDetails } from './client-integration';
 
 export async function triggerCloudRestore() {
@@ -20,3 +20,4 @@ export async function triggerCloudRestore() {
 
     return { success: true, message: 'Restore Signal Sent to Site.' };
 }
+

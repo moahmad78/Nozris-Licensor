@@ -100,7 +100,7 @@ export default function ShieldAccessVault() {
                             <Box size={14} /> ENCRYPTED_TUNNEL: ACTIVE
                         </div>
                         <div className="flex items-center gap-2 text-gray-700 text-[9px] font-bold tracking-[0.3em] uppercase">
-                            Property of Licensr Security
+                            Property of Nozris Security
                         </div>
                     </div>
                 </div>

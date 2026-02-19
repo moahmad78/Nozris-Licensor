@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { sendMultiChannelNotification } from '@/lib/notifications';
 
 export async function GET() {
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
         // We will use a loop for now or a single transaction if needed, but for "all users", let's be careful.
         // Assuming reasonably sized client list for now.
 
-        const notificationsData = clients.map(client => ({
+        const notificationsData = clients.map((client: { email: string; whatsapp: string; name: string }) => ({
             clientEmail: client.email,
             title: `📣 Announcement: ${title}`,
             message: message,
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
 
         // 4. Simultaneous Blast (WhatsApp + Email)
         // We'll fire these off in parallel
-        await Promise.all(clients.map(async (client) => {
+        await Promise.all(clients.map(async (client: { email: string; whatsapp: string; name: string }) => {
             return sendMultiChannelNotification(
                 { email: client.email },
                 { title: `📣 ${title}`, message },
@@ -65,3 +65,4 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Failed to broadcast' }, { status: 500 });
     }
 }
+

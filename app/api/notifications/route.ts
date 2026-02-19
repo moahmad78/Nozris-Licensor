@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { cookies } from 'next/headers';
 import { verifyToken } from '@/lib/client-auth-token';
 
@@ -56,3 +56,4 @@ export async function PATCH(req: Request) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
+

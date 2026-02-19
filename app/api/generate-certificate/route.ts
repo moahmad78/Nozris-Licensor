@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: 'Verification code is required' }, { status: 400 });
         }
 
-        const verificationUrl = `https://licensr.in/verify/${verificationCode}`;
+        const verificationUrl = `https://nozris.com/verify/${verificationCode}`;
         const qrCodeDataUrl = await QRCode.toDataURL(verificationUrl);
 
         // High-end SVG Certificate Generation
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
         <text x="400" y="280" font-family="serif" font-size="32" fill="#FFF" text-anchor="middle" font-weight="bold">${name}</text>
         <text x="400" y="320" font-family="sans-serif" font-size="16" fill="#888" text-anchor="middle">(${domain})</text>
 
-        <text x="400" y="380" font-family="sans-serif" font-size="14" fill="#AAA" text-anchor="middle">Are protected by Licensr's Military Grade Encryption Protocols.</text>
+        <text x="400" y="380" font-family="sans-serif" font-size="14" fill="#AAA" text-anchor="middle">Are protected by Nozris's Military Grade Encryption Protocols.</text>
         <text x="400" y="400" font-family="sans-serif" font-size="14" fill="#AAA" text-anchor="middle">Any unauthorized access or code theft will trigger immediate corruption.</text>
 
         <!-- Date -->
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
 
         <!-- Signature -->
         <text x="600" y="500" font-family="serif" font-size="20" fill="#D4AF37" text-anchor="middle" font-style="italic">Mohd Ahmad</text>
-        <text x="600" y="520" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle">Founder, Licensr</text>
+        <text x="600" y="520" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle">Founder, Nozris</text>
 
         <!-- QR Code -->
         <image x="350" y="450" width="100" height="100" href="${qrCodeDataUrl}" />

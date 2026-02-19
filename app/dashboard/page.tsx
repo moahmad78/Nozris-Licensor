@@ -1,7 +1,7 @@
 import { NotificationBell } from '@/components/notification-bell';
 import { EditLicenseModal } from '@/components/edit-license-modal';
 import { DatePopup } from "@/components/date-popup";
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { License } from '@prisma/client';
 import { Trash2, CheckCircle, XCircle, RefreshCw, Smartphone, CalendarClock, Power, Users, FileWarning, ShieldAlert, ArrowRight } from 'lucide-react';
 import { createLicense, toggleStatus, deleteLicense } from '@/lib/actions'; // Server Actions
@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { getNotifications, getUnreadCount } from '@/app/actions/notification-actions';
 import { getSupportAnalytics } from '@/app/actions/support-actions';
 import { Star } from 'lucide-react';
+import { SecurityCommandCenter } from '@/components/SecurityCommandCenter';
 
 export default async function Dashboard(props: {
     searchParams: Promise<{ q?: string; status?: string }>;
@@ -114,6 +115,9 @@ export default async function Dashboard(props: {
                             unreadCount={unreadCount}
                             target={target}
                         />
+                        <div className="ml-2 pl-4 border-l border-gray-200">
+                            <SignOutButton />
+                        </div>
                     </div>
                 </header>
 
@@ -150,6 +154,18 @@ export default async function Dashboard(props: {
                         href="/admin/support-center"
                         isActive={false}
                         colorClass="yellow"
+                    />
+                </div>
+
+                {/* Security Command Center — Dark Cyber Section */}
+                <div className="bg-[#050510] rounded-2xl p-6 border border-gray-800 -mx-2 shadow-xl">
+                    <SecurityCommandCenter
+                        licenses={licenses.map(l => ({
+                            id: l.id,
+                            domain: l.domain,
+                            status: l.status,
+                            lastChecked: l.lastChecked?.toISOString() || null,
+                        }))}
                     />
                 </div>
 
@@ -328,3 +344,4 @@ function Badge({ status }: { status: string }) {
         <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${styles[status as keyof typeof styles] || 'bg-gray-100 text-gray-600'}`}>{status}</span>
     );
 }
+

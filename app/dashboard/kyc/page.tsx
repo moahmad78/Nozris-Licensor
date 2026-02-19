@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { KYCTable } from './kyc-table';
 import { ShieldAlert } from 'lucide-react';
 import { ReminderTrigger } from './reminder-trigger';
@@ -25,3 +25,4 @@ export default async function KYCAdminPage() {
         </div>
     );
 }
+

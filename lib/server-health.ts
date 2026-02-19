@@ -5,7 +5,7 @@ export function getServerHealth() {
         // Use statfsSync to get real disk statistics from the root partition
         const stats = fs.statfsSync(process.platform === 'win32' ? 'C:/' : '/');
 
-        const bToGb = (b: bigint) => Number(b) / (1024 * 1024 * 1024);
+        const bToGb = (b: number) => b / (1024 * 1024 * 1024);
 
         const total = bToGb(stats.bsize * stats.blocks);
         const free = bToGb(stats.bsize * stats.bfree);

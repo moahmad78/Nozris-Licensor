@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import Link from 'next/link';
 import { User, Globe, Shield, Calendar, Search, Users, ArrowRight } from 'lucide-react';
 import { ExportButton } from './export-button';
@@ -27,9 +27,9 @@ export default async function ClientsPage({
 
     const allLicenses = await prisma.license.findMany();
 
-    const exportData = clients.map(client => {
-        const clientLicenses = allLicenses.filter(l => l.clientEmail === client.email);
-        const totalRevenue = clientLicenses.reduce((acc, curr) => acc + curr.monthlyPrice, 0);
+    const exportData = clients.map((client: any) => {
+        const clientLicenses = allLicenses.filter((l: any) => l.clientEmail === client.email);
+        const totalRevenue = clientLicenses.reduce((acc: number, curr: any) => acc + curr.monthlyPrice, 0);
 
         return {
             "Name": client.name,
@@ -85,8 +85,8 @@ export default async function ClientsPage({
                         <Link href="/dashboard/clients" className="text-blue-600 text-sm font-bold mt-4 inline-block">View all clients</Link>
                     </div>
                 ) : (
-                    clients.map((client) => {
-                        const clientLicenses = allLicenses.filter(l => l.clientEmail === client.email);
+                    clients.map((client: any) => {
+                        const clientLicenses = allLicenses.filter((l: any) => l.clientEmail === client.email);
                         return (
                             <Link
                                 key={client.id}
@@ -97,7 +97,7 @@ export default async function ClientsPage({
                                     <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold text-lg border border-blue-100 uppercase">
                                         {client.name.charAt(0)}
                                     </div>
-                                    {clientLicenses.some(l => l.status === 'TERMINATED') ? (
+                                    {clientLicenses.some((l: any) => l.status === 'TERMINATED') ? (
                                         <span className="px-2 py-1 rounded-lg text-[10px] font-black bg-red-600 text-white border border-red-700 uppercase tracking-wider animate-pulse">
                                             TERMINATED
                                         </span>
@@ -128,3 +128,4 @@ export default async function ClientsPage({
         </div>
     );
 }
+

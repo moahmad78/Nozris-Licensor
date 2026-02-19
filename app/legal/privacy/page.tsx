@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
                     <h2 className="text-2xl font-bold text-white">1. Data Collection & Usage</h2>
                     <p>
                         In compliance with the <strong className="text-white">Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011</strong> under the IT Act, 2000,
-                        Licensr collects specific data points essential for security enforcement.
+                        Nozris collects specific data points essential for security enforcement.
                     </p>
                     <ul className="list-disc pl-6 space-y-2 text-gray-400">
                         <li><strong>Network Identity:</strong> Public IP addresses, Proxy detection flags, and VPN signatures.</li>
@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
                 </section>
 
                 <div className="pt-8 border-t border-gray-800 text-sm text-gray-500">
-                    © 2026 Licensr Security Solutions. All rights reserved.
+                    © 2026 Nozris Security Solutions. All rights reserved.
                 </div>
             </div>
         </div>

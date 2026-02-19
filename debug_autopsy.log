@@ -1,0 +1,2 @@
+[2026-02-09T09:32:26.631Z] Error: SyntaxError: Bad escaped character in JSON at position 7 (line 1 column 8)
+[2026-02-09T09:32:50.265Z] Error: Error: Missing OPENAI_API_KEY

@@ -1,5 +1,5 @@
 import { getProfile } from '@/app/actions/profile';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { DashboardNav } from '@/components/dashboard-nav';
 import { SignOutButton } from '@/components/ui/sign-out-button';
 import { AdminNotificationListener } from '@/components/admin-notifications-listener';
@@ -21,7 +21,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
                             <img src={profile.logo} alt="Logo" className="h-8 object-contain" />
                         ) : (
                             <h1 className="font-bold text-xl tracking-tight flex items-center gap-2">
-                                License<span className="text-gray-400">Mgr</span>
+                                Nozris
                             </h1>
                         )}
                     </div>
@@ -47,3 +47,4 @@ export default async function DashboardLayout({ children }: { children: React.Re
         </div>
     );
 }
+

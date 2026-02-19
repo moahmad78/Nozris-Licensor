@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
         const message = `
         URGENT LEGAL NOTICE:
         
-        This is an automated security alert from Licensr.
+        This is an automated security alert from Nozris.
         Your IP [${ip}] has been logged attempting unauthorized access to protected intellectual property on [${domain}].
         
         We have captured your device fingerprint and location data.

@@ -14,7 +14,7 @@ export default function LegalShieldDoc() {
                     <section className="bg-gray-900 border border-gray-800 p-8 rounded-2xl">
                         <h2 className="text-2xl font-bold text-white mb-4">How it Works</h2>
                         <p className="leading-relaxed mb-6">
-                            When a threat is confirmed (e.g., unauthorized file modification), Licensr's backend triggers the
+                            When a threat is confirmed (e.g., unauthorized file modification), Nozris backend triggers the
                             Legal Shield module.
                         </p>
                         <div className="space-y-4">

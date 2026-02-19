@@ -20,7 +20,7 @@ export function DemoGallery() {
                     >
                         {/* Watermark Overlay */}
                         <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none mix-blend-overlay opacity-20">
-                            <span className="text-6xl font-black uppercase -rotate-12 text-white">Protected by Licensr</span>
+                            <span className="text-6xl font-black uppercase -rotate-12 text-white">Protected by Nozris</span>
                         </div>
 
                         {/* Placeholder Content */}

@@ -1,4 +1,4 @@
-import { prisma } from './prisma';
+import { prisma } from './db';
 import { sendEmail } from './email';
 import { sendWhatsAppMessage } from './whatsapp';
 

@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { verifyToken } from '@/lib/client-auth-token';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { KYCForm } from './kyc-form';
 
 export default async function KYCPage() {
@@ -28,3 +28,4 @@ export default async function KYCPage() {
         </div>
     );
 }
+

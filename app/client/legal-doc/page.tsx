@@ -28,7 +28,7 @@ export default function LegalDocPage() {
                             <Scale className="w-6 h-6" /> 1. Parties Involved
                         </h2>
                         <p className="font-sans text-gray-800">
-                            This agreement is made on <strong>{currentDate}</strong> between <strong>Licensr Security Systems</strong> (Provider) and <strong>{clientName}</strong> (Recipient).
+                            This agreement is made on <strong>{currentDate}</strong> between <strong>Nozris Security Systems</strong> (Provider) and <strong>{clientName}</strong> (Recipient).
                         </p>
                     </section>
 
@@ -37,7 +37,7 @@ export default function LegalDocPage() {
                             <Lock className="w-6 h-6" /> 2. Scope of Protection
                         </h2>
                         <p className="font-sans text-gray-800">
-                            The Recipient acknowledges that the software source code, assets, and intellectual property provided are protected by <strong>Licensr's Autonomous Security Protocols</strong>.
+                            The Recipient acknowledges that the software source code, assets, and intellectual property provided are protected by <strong>Nozris's Autonomous Security Protocols</strong>.
                         </p>
                     </section>
 
@@ -60,7 +60,7 @@ export default function LegalDocPage() {
                             <FileWarning className="w-6 h-6" /> 4. Legal Prosecution
                         </h2>
                         <p className="font-sans text-gray-800">
-                            Violations will be prosecuted to the fullest extent of the law under <strong>Section 66 (Computer Related Offences)</strong> of the <strong>Information Technology Act, 2000</strong>. Licensr reserves the right to claim damages for loss of intellectual property and revenue.
+                            Violations will be prosecuted to the fullest extent of the law under <strong>Section 66 (Computer Related Offences)</strong> of the <strong>Information Technology Act, 2000</strong>. Nozris reserves the right to claim damages for loss of intellectual property and revenue.
                         </p>
                     </section>
 
@@ -69,11 +69,11 @@ export default function LegalDocPage() {
                 <footer className="mt-16 pt-8 border-t border-black flex flex-col md:flex-row justify-between items-center gap-8">
                     <div className="text-center md:text-left">
                         <p className="font-bold text-xl font-cursive">Mohd Ahmad</p>
-                        <p className="text-sm text-gray-500 uppercase">Founder, Licensr</p>
+                        <p className="text-sm text-gray-500 uppercase">Founder, Nozris</p>
                     </div>
                     <div className="flex items-center gap-2 text-sm font-sans text-gray-500">
                         <Globe className="w-4 h-4" />
-                        Digitally Verify at licensr.in/legal
+                        Digitally Verify at nozris.in/legal
                     </div>
                 </footer>
 

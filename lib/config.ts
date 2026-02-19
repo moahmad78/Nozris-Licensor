@@ -3,3 +3,5 @@ export const PLANS = {
     STANDARD: { label: "Standard Plan", monthlyRate: 1000 },
     PREMIUM: { label: "Premium Plan", monthlyRate: 2000 },
 };
+
+export const SITE_NAME = "Nozris";

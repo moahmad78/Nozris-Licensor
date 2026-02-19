@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 
 const ALGORITHM = 'aes-256-gcm';
 const SECRET_KEY = process.env.BACKUP_SECRET || 'v00mit-sup3r-s3cr3t-b4ckup-k3y-2026';
@@ -65,3 +65,4 @@ export async function decryptBackup(encryptedBackupStr: string) {
         throw new Error("Invalid backup file or secret key");
     }
 }
+

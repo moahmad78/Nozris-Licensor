@@ -25,7 +25,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
         // Simulation of API logic
         await new Promise(resolve => setTimeout(resolve, 1500));
 
-        toast.success("PROTOCOL INITIATED. WELCOME TO LICENSR.");
+        toast.success("PROTOCOL INITIATED. WELCOME TO NOZRIS.");
         setIsLoading(false);
         onClose();
         setFormData({ name: '', website: '', platform: 'Next.js' });
@@ -59,7 +59,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
 
                     {/* EXISTING CUSTOMER LOGIN SHORTCUT */}
                     <div className="p-4 border border-dashed border-slate-800 rounded-xl bg-slate-900/50 text-center">
-                        <p className="text-xs text-slate-400 mb-3 font-semibold uppercase tracking-wider">Existing Licensr Client?</p>
+                        <p className="text-xs text-slate-400 mb-3 font-semibold uppercase tracking-wider">Existing Nozris Client?</p>
                         <Link href="/customer/dashboard">
                             <button className="w-full py-3 bg-white text-slate-950 font-bold rounded-lg text-sm transition-all hover:bg-blue-50 flex items-center justify-center gap-2 shadow-sm">
                                 Access Dashboard <LogIn size={14} />

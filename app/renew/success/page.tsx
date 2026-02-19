@@ -5,7 +5,23 @@ import { CheckCircle, Copy, Check, Download, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 
+import { Suspense } from 'react';
+
 export default function RenewalSuccessPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <div className="text-center">
+                    <h1 className="text-2xl font-bold text-gray-900">Loading...</h1>
+                </div>
+            </div>
+        }>
+            <RenewalSuccessContent />
+        </Suspense>
+    );
+}
+
+function RenewalSuccessContent() {
     const searchParams = useSearchParams();
     const key = searchParams.get('key');
     const [copied, setCopied] = useState(false);
@@ -23,7 +39,7 @@ export default function RenewalSuccessPage() {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
                 <div className="text-center">
-                    <h1 className="text-2xl font-bold text-gray-900">Loading...</h1>
+                    <h1 className="text-2xl font-bold text-gray-900">Validating...</h1>
                 </div>
             </div>
         );

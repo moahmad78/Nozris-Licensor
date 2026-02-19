@@ -1,0 +1,211 @@
+
+> dasbaord@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local, .env
+- Experiments (use with caution):
+  · serverActions
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 9 errors:
+./app/docs/emergency-lock-protocol/page.tsx:59:33
+Parsing ecmascript source code failed
+[0m [90m 57 |[39m                             [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 58 |[39m                             [33m<[39m[33mp[39m className[33m=[39m[32m"font-mono text-xs text-red-400/80 mb-6 leading-relaxed"[39m[33m>[39m
+[31m[1m>[22m[39m[90m 59 |[39m                                 [33m>[39m [33mSIGNAL_RECIEVED[39m[33m:[39m [33mEMERGENCY_ALPHA_7[39m[33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+ [90m    |[39m                                 [31m[1m^[22m[39m
+ [90m 60 |[39m                                 [33m>[39m [33mVALIDATING[39m [33mSOURCE[39m[33m:[39m [[33mLICENSR_CORE_MESH[39m][33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+ [90m 61 |[39m                                 [33m>[39m [33mSTATUS[39m[33m:[39m [35m100[39m[33m%[39m [33mNODES[39m [33mSYNCED[39m[33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+ [90m 62 |[39m                                 [33m>[39m [33mACTION[39m[33m:[39m [33mATOMIC_FS_LOCK_EXECUTED[39m[0m
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+
+./app/docs/emergency-lock-protocol/page.tsx:60:33
+Parsing ecmascript source code failed
+[0m [90m 58 |[39m                             [33m<[39m[33mp[39m className[33m=[39m[32m"font-mono text-xs text-red-400/80 mb-6 leading-relaxed"[39m[33m>[39m
+ [90m 59 |[39m                                 [33m>[39m [33mSIGNAL_RECIEVED[39m[33m:[39m [33mEMERGENCY_ALPHA_7[39m[33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+[31m[1m>[22m[39m[90m 60 |[39m                                 [33m>[39m [33mVALIDATING[39m [33mSOURCE[39m[33m:[39m [[33mLICENSR_CORE_MESH[39m][33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+ [90m    |[39m                                 [31m[1m^[22m[39m
+ [90m 61 |[39m                                 [33m>[39m [33mSTATUS[39m[33m:[39m [35m100[39m[33m%[39m [33mNODES[39m [33mSYNCED[39m[33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+ [90m 62 |[39m                                 [33m>[39m [33mACTION[39m[33m:[39m [33mATOMIC_FS_LOCK_EXECUTED[39m
+ [90m 63 |[39m                             [33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+
+./app/docs/emergency-lock-protocol/page.tsx:61:33
+Parsing ecmascript source code failed
+[0m [90m 59 |[39m                                 [33m>[39m [33mSIGNAL_RECIEVED[39m[33m:[39m [33mEMERGENCY_ALPHA_7[39m[33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+ [90m 60 |[39m                                 [33m>[39m [33mVALIDATING[39m [33mSOURCE[39m[33m:[39m [[33mLICENSR_CORE_MESH[39m][33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+[31m[1m>[22m[39m[90m 61 |[39m                                 [33m>[39m [33mSTATUS[39m[33m:[39m [35m100[39m[33m%[39m [33mNODES[39m [33mSYNCED[39m[33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+ [90m    |[39m                                 [31m[1m^[22m[39m
+ [90m 62 |[39m                                 [33m>[39m [33mACTION[39m[33m:[39m [33mATOMIC_FS_LOCK_EXECUTED[39m
+ [90m 63 |[39m                             [33m<[39m[33m/[39m[33mp[39m[33m>[39m
+ [90m 64 |[39m                             [33m<[39m[33mbutton[39m[0m
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+
+./app/docs/emergency-lock-protocol/page.tsx:62:33
+Parsing ecmascript source code failed
+[0m [90m 60 |[39m                                 [33m>[39m [33mVALIDATING[39m [33mSOURCE[39m[33m:[39m [[33mLICENSR_CORE_MESH[39m][33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+ [90m 61 |[39m                                 [33m>[39m [33mSTATUS[39m[33m:[39m [35m100[39m[33m%[39m [33mNODES[39m [33mSYNCED[39m[33m<[39m[33mbr[39m [33m/[39m[33m>[39m
+[31m[1m>[22m[39m[90m 62 |[39m                                 [33m>[39m [33mACTION[39m[33m:[39m [33mATOMIC_FS_LOCK_EXECUTED[39m
+ [90m    |[39m                                 [31m[1m^[22m[39m
+ [90m 63 |[39m                             [33m<[39m[33m/[39m[33mp[39m[33m>[39m
+ [90m 64 |[39m                             [33m<[39m[33mbutton[39m
+ [90m 65 |[39m                                 onClick[33m=[39m{() [33m=>[39m setIsSimulating([36mfalse[39m)}[0m
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+
+./components/Sidebar.tsx:57:1
+Parsing ecmascript source code failed
+[0m [90m 55 |[39m             [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 56 |[39m             )[33m;[39m
+[31m[1m>[22m[39m[90m 57 |[39m }
+ [90m    |[39m [31m[1m^[22m[39m
+ [90m 58 |[39m[0m
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import trace:
+  Server Component:
+    ./components/Sidebar.tsx
+    ./app/admin/layout.tsx
+
+
+./components/admin/SmartFilter.tsx:7:1
+Module not found: Can't resolve '@/components/ui/button'
+[0m [90m  5 |[39m [36mimport[39m { [33mCalendar[39m [36mas[39m [33mCalendarIcon[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@/components/ui/button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCalendar[39m } [36mfrom[39m [32m"@/components/ui/calendar"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m {
+ [90m 10 |[39m     [33mPopover[39m[33m,[39m[0m
+
+Import map: aliased to relative './components/ui/button' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/SmartFilter.tsx [Client Component Browser]
+    ./app/admin/reports/daily/page.tsx [Client Component Browser]
+    ./app/admin/reports/daily/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/SmartFilter.tsx [Client Component SSR]
+    ./app/admin/reports/daily/page.tsx [Client Component SSR]
+    ./app/admin/reports/daily/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./components/admin/SmartFilter.tsx:8:1
+Module not found: Can't resolve '@/components/ui/calendar'
+[0m [90m  6 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@/components/ui/button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mCalendar[39m } [36mfrom[39m [32m"@/components/ui/calendar"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m {
+ [90m 10 |[39m     [33mPopover[39m[33m,[39m
+ [90m 11 |[39m     [33mPopoverContent[39m[33m,[39m[0m
+
+Import map: aliased to relative './components/ui/calendar' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/SmartFilter.tsx [Client Component Browser]
+    ./app/admin/reports/daily/page.tsx [Client Component Browser]
+    ./app/admin/reports/daily/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/SmartFilter.tsx [Client Component SSR]
+    ./app/admin/reports/daily/page.tsx [Client Component SSR]
+    ./app/admin/reports/daily/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./components/admin/SmartFilter.tsx:9:1
+Module not found: Can't resolve '@/components/ui/popover'
+[0m [90m  7 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@/components/ui/button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mCalendar[39m } [36mfrom[39m [32m"@/components/ui/calendar"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m {
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 10 |[39m     [33mPopover[39m[33m,[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 11 |[39m     [33mPopoverContent[39m[33m,[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 12 |[39m     [33mPopoverTrigger[39m[33m,[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 13 |[39m } [36mfrom[39m [32m"@/components/ui/popover"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m { useRouter[33m,[39m useSearchParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [36mexport[39m [36mfunction[39m [33mSmartFilter[39m() {[0m
+
+Import map: aliased to relative './components/ui/popover' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/SmartFilter.tsx [Client Component Browser]
+    ./app/admin/reports/daily/page.tsx [Client Component Browser]
+    ./app/admin/reports/daily/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/SmartFilter.tsx [Client Component SSR]
+    ./app/admin/reports/daily/page.tsx [Client Component SSR]
+    ./app/admin/reports/daily/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./components/admin/SmartFilter.tsx:6:1
+Module not found: Can't resolve '@/lib/utils'
+[0m [90m 4 |[39m [36mimport[39m { format } [36mfrom[39m [32m"date-fns"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mCalendar[39m [36mas[39m [33mCalendarIcon[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@/components/ui/button"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { [33mCalendar[39m } [36mfrom[39m [32m"@/components/ui/calendar"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m {[0m
+
+Import map: aliased to relative './lib/utils' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/SmartFilter.tsx [Client Component Browser]
+    ./app/admin/reports/daily/page.tsx [Client Component Browser]
+    ./app/admin/reports/daily/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/SmartFilter.tsx [Client Component SSR]
+    ./app/admin/reports/daily/page.tsx [Client Component SSR]
+    ./app/admin/reports/daily/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./app/docs/emergency-lock-protocol/page.tsx:59:33)
+    at <unknown> (./app/docs/emergency-lock-protocol/page.tsx:60:33)
+    at <unknown> (./app/docs/emergency-lock-protocol/page.tsx:61:33)
+    at <unknown> (./app/docs/emergency-lock-protocol/page.tsx:62:33)
+    at <unknown> (./components/Sidebar.tsx:57:1)
+    at <unknown> (./components/admin/SmartFilter.tsx:7:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./components/admin/SmartFilter.tsx:8:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./components/admin/SmartFilter.tsx:9:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./components/admin/SmartFilter.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)

@@ -25,9 +25,9 @@ export async function POST(req: NextRequest) {
         doc.setFont("times", "normal");
         doc.setFontSize(11);
         const bodyText = `
-I am writing to you on behalf of Licensr Security Systems. We have detected unauthorized use and distribution of our proprietary software source code on the domain listed above.
+I am writing to you on behalf of Nozris Security Systems. We have detected unauthorized use and distribution of our proprietary software source code on the domain listed above.
 
-The content in question is the intellectual property of Licensr and its licensed partners. The access to this code is protected by an active license agreement (Key: ${licenseKey}), which has been violated by the entity operating ${hackerDomain}.
+The content in question is the intellectual property of Nozris and its licensed partners. The access to this code is protected by an active license agreement (Key: ${licenseKey}), which has been violated by the entity operating ${hackerDomain}.
 
 Violation: Verification failures logged on ${violationDate}.
 
@@ -46,12 +46,12 @@ We demand the immediate removal or disabling of access to the infringing materia
         doc.setFont("times", "bold");
         doc.text("Mohd Ahmad", 20, 190);
         doc.setFont("times", "italic");
-        doc.text("Founder, Licensr", 20, 195);
+        doc.text("Founder, Nozris", 20, 195);
 
         // Footer
         doc.setFontSize(9);
         doc.setTextColor(150);
-        doc.text("Generated Automatically by Licensr Legal Defense Engine", 105, 280, { align: "center" });
+        doc.text("Generated Automatically by Nozris Legal Defense Engine", 105, 280, { align: "center" });
 
         // Output
         const pdfBuffer = doc.output('arraybuffer');

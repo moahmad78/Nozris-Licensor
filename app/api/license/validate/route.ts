@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { checkIPStatus, registerSuspiciousAttempt } from '@/lib/security';
+import { rateLimiter } from '@/lib/rate-limiter';
 
 export async function POST(req: Request) {
     // CORS Headers
@@ -24,6 +25,21 @@ export async function POST(req: Request) {
             return NextResponse.json(
                 { valid: false, reason: 'Access Denied. IP Blocked.' },
                 { status: 403, headers }
+            );
+        }
+
+        // Rate Limiting — 20 req/min
+        const { allowed, remaining, resetAt } = rateLimiter.check(ip);
+        if (!allowed) {
+            return NextResponse.json(
+                { valid: false, reason: 'Rate limit exceeded. Try again later.' },
+                {
+                    status: 429,
+                    headers: {
+                        ...headers,
+                        ...rateLimiter.headers({ remaining, resetAt })
+                    }
+                }
             );
         }
 
@@ -215,14 +231,12 @@ export async function POST(req: Request) {
             );
         }
 
-        // Generate a temporary functional payload (e.g., critical CSS to un-hide content)
-        const payload = `
-            /* Licensed Component Loader */
-            #app-root { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
-            .license-warning { display: none !important; }
-        `;
+        // Generate signed, encoded bootstrap payload (not plain CSS)
+        const { createNozrisPayload } = await import('@/lib/security');
+        const payload = await createNozrisPayload(license.id, license.domain);
 
-        const heartbeatToken = Buffer.from(`${license.id}-${now.getTime()}`).toString('base64');
+        // Heartbeat token: licenseId:timestamp in Base64
+        const heartbeatToken = Buffer.from(`${license.id}:${now.getTime()}`).toString('base64');
 
         return NextResponse.json({
             valid: true,
@@ -247,3 +261,4 @@ export async function OPTIONS() {
     };
     return NextResponse.json({}, { headers });
 }
+

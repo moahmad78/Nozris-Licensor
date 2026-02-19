@@ -23,7 +23,7 @@ export default function ThreatIntelligenceDemo() {
                         Attack <span className="text-blue-500">Forensics</span>.
                     </h1>
                     <p className="text-xl text-gray-400 leading-relaxed font-light">
-                        Real-time logging is irrelevant if it's not actionable. Licensr captures every byte of the intruder's environment for legal and technical retaliation.
+                        Real-time logging is irrelevant if it's not actionable. Nozris captures every byte of the intruder's environment for legal and technical retaliation.
                     </p>
                 </header>
 

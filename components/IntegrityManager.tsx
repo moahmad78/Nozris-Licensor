@@ -29,7 +29,7 @@ export default function IntegrityManager({
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     licenseKey: "DEMO-LICENSE-KEY", // In real app, fetch from context
-                    adminAuthToken: "LICENSR-MASTER-KEY"
+                    adminAuthToken: "NOZRIS-MASTER-KEY"
                 })
             });
 

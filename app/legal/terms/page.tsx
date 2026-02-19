@@ -12,15 +12,15 @@ export default function TermsOfService() {
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold text-white">1. Acceptance of Terms</h2>
                     <p>
-                        By integrating Licensr API or SDKs into your software application, you agree to be bound by these Terms.
-                        If you do not agree, you must immediately remove all Licensr code from your projects.
+                        By integrating Nozris API or SDKs into your software application, you agree to be bound by these Terms.
+                        If you do not agree, you must immediately remove all Nozris code from your projects.
                     </p>
                 </section>
 
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold text-white">2. Anti-Reverse Engineering</h2>
                     <p>
-                        You strictly agree NOT to attempts to reverse engineer, decompile, or disassemble the Licensr client libraries.
+                        You strictly agree NOT to attempts to reverse engineer, decompile, or disassemble the Nozris client libraries.
                         Any such attempt is a violation of these terms and may be flagged by our automated systems as a hostile action,
                         resulting in an immediate account ban and potential legal action.
                     </p>
@@ -29,8 +29,8 @@ export default function TermsOfService() {
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold text-white">3. Liability Disclaimer</h2>
                     <p>
-                        Licensr provides security mechanisms on an "AS IS" basis. While we strive for perfection, no security system is theoretically impenetrable.
-                        Licensr shall not be liable for any indirect, incidental, or consequential damages arising from the use or inability to use our service.
+                        Nozris provides security mechanisms on an "AS IS" basis. While we strive for perfection, no security system is theoretically impenetrable.
+                        Nozris shall not be liable for any indirect, incidental, or consequential damages arising from the use or inability to use our service.
                     </p>
                 </section>
 
@@ -55,7 +55,7 @@ export default function TermsOfService() {
                 </section>
 
                 <div className="pt-8 border-t border-gray-800 text-sm text-gray-500">
-                    © 2026 Licensr Security Solutions. All rights reserved.
+                    © 2026 Nozris Security Solutions. All rights reserved.
                 </div>
             </div>
         </div>

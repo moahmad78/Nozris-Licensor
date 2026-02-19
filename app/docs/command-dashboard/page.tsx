@@ -16,7 +16,7 @@ export default function CommandDashboardDoc() {
                         Master Your <span className="text-cyan-500">Kingdom</span>.
                     </h1>
                     <p className="text-2xl text-gray-400 font-light max-w-3xl">
-                        The Licensr Command Dashboard is your central mission control. Detailed telemetry, live threat maps, and the absolute power to kill or revive any software instance instantly.
+                        The Nozris Command Dashboard is your central mission control. Detailed telemetry, live threat maps, and the absolute power to kill or revive any software instance instantly.
                     </p>
                 </div>
 
@@ -95,7 +95,7 @@ export default function CommandDashboardDoc() {
                         <Database className="text-cyan-500" /> Connecting to Your Database
                     </h2>
                     <p className="text-gray-400 text-lg mb-8 max-w-3xl">
-                        The Licensr Dashboard connects directly to your secure <strong>Prisma</strong> database instance. This ensures that every status change is committed atomically and synced across all your distributed applications instantly.
+                        The Nozris Dashboard connects directly to your secure <strong>Prisma</strong> database instance. This ensures that every status change is committed atomically and synced across all your distributed applications instantly.
                     </p>
 
                     <div className="bg-black border border-gray-800 rounded-2xl p-6 font-mono text-sm text-gray-300 overflow-x-auto">

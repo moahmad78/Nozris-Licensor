@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { checkIPStatus } from '@/lib/security';
 
 export async function POST(req: Request) {
@@ -70,3 +70,4 @@ export async function OPTIONS() {
     };
     return NextResponse.json({}, { headers });
 }
+

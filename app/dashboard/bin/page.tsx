@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/db';
 import { restoreLicense, forceDeleteLicense } from '@/lib/actions';
 import { Trash2, RefreshCw, AlertTriangle } from 'lucide-react';
 import { Toaster } from 'sonner';
@@ -105,3 +105,4 @@ export default async function RecycleBinPage() {
         </div>
     );
 }
+
