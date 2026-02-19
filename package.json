@@ -12,8 +12,6 @@
     "live": "vercel --prod"
   },
   "dependencies": {
-    "@libsql/client": "^0.17.0",
-    "@prisma/adapter-libsql": "^5.22.0",
     "@prisma/client": "^5.22.0",
     "@swc/helpers": "^0.5.18",
     "@types/qrcode": "^1.5.6",
